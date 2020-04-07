@@ -1,41 +1,49 @@
 import React, {useState} from "react";
 import {useHistory} from 'react-router-dom';
-import "./login.css"
+import "./signup.css"
 import axios from 'axios';
 
 
-const Login = () =>{
+
+
+const Signup = (props) =>{
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   let history = useHistory();
-
-  const onLoginHandler = (e)=> {
-    e.preventDefault();
+  const submitFormHandler = (event)=> {
+    event.preventDefault();
     const obj= {
       email,
       password
     }
-    axios.post('/api/local/login', obj)
+    axios.post('/api/local/signin', obj)
       .then(res=> {
         console.log(res);
         history.push('/home');
       }).catch(err=> console.log(err))
   }
+
     return(
         <div id="login-box">
           <div className="left">
-            <h1>Login</h1>
-            <form onSubmit={onLoginHandler}>
+            <h1>Sign up</h1>
+            <form className="authForm" onSubmit ={submitFormHandler}>
               <input onChange={(e)=>{setEmail(e.target.value)}} type="text" name="email" placeholder="E-mail" />
               <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" placeholder="Password" />
-              <button type="submit">Login</button>
+              <button class="btn waves-effect waves-light" type="submit" name="action">Sign-Up
+                <i class="material-icons right">send</i>
+              </button>
             </form>
-            <div>
-              <p>Dont have an account yet ?</p>
-              <a href="/signup"><button type="button" className="btn">Signup Here</button></a>
+         
+            <div className="auth-type">
+              <blockquote>
+                <p>Already a user?</p>
+              </blockquote>
+              
+              <a href="/login"><button type="button" className="btn #ff7043 deep-orange lighten-1 btn-small">Login here</button></a> 
             </div>
-
+            
           </div>
 
           <div id="right">
@@ -49,4 +57,6 @@ const Login = () =>{
     )
 }
 
-export default Login
+export default Signup
+
+

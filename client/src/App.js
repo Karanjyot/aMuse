@@ -2,23 +2,19 @@
 import React from "react";
 // browser router looks at current url and changes components visible. Route sets up rules.
 import { BrowserRouter, Route,} from "react-router-dom";
+import './App.css';
 
-import Landing from "./components/Landing/Landing"
-import Signup from "./components/Signup/Signup"
-import Login from "./components/Login/Login"
-import Home from "./components/Home/Home"
+import Signup from "./pages/Signup/Signup"
+import Login from "./pages/Login/Login"
+import Home from "./pages/Home/Home"
 
 
 
 const App = () =>{
-
-
-
         return (
-            <div className="container">
+            <div>
                 <BrowserRouter >
-                        <Route exact path = "/" component = {Landing} />
-                        <Route path = "/signup" component = {Signup} />
+                        <Route exact path = "/" component = {Signup} />
                         <Route path = "/login" component = {Login} />
                         <Route path ="/home" component ={Home} />  
                 </BrowserRouter>
