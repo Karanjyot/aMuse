@@ -24,9 +24,6 @@ const Header = (props) => {
     }, [])
 
    const renderContent = () => {
-
-   
-
         if(user){
             return <li><a href="/api/logout">Logout</a></li>
         }else{
@@ -52,8 +49,6 @@ const Header = (props) => {
 
                 </div>
             </nav>
-
-            
             </div>
         );
     
