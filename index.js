@@ -3,16 +3,19 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require ("passport");
 const keys = require("./config/keys");
-
+const cors = require("cors");
 
 require("./models/User");
 require("./services/passport");
 const authRoutes = require("./routes/authRoutes")
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://karanjyot:password1@ds113566.mlab.com:13566/heroku_2zbgk477", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/email_app", { useNewUrlParser: true });
 
 // generate app object
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 
 app.use(
     cookieSession({

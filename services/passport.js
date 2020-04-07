@@ -46,6 +46,35 @@ passport.use(new GoogleStrategy({
      
    
 }));
+//***********************************************************************************************************
+const LocalStrategy = require("passport-local").Strategy;
 
 
 
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+},
+
+    function(username, password, done) {
+      
+      User.findOne({
+          email: username  
+      }).then(function(dbUser) {
+   
+        if (!dbUser) {
+          return done(null, false, {
+            message: "Incorrect email."
+          });
+        }
+        else if (!dbUser.verifyPassword(password)) {
+          return done(null, false, {
+            message: "Incorrect password."
+          });
+        }
+        // If none of the above, return the user
+        return done(null, dbUser);
+      });
+    }
+  ));
+
+  //***********************************************************************************************************

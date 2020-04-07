@@ -1,8 +1,8 @@
 import React from "react";
-// import auth from "./Auth";
 
-import "./landing.css"
-import Header from "./Header";
+
+import "./home.css"
+import Header from "../Header/Header";
 
 
 const Home = () =>{
