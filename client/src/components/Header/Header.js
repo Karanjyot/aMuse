@@ -4,26 +4,28 @@ import { useHistory } from "react-router-dom";
 import "./header.css";
 
 const Header = (props) => {
+  // let history = useHistory();
 
-    let history = useHistory();
+  // const logout = ()=>{
 
-    const logout = ()=>{
+  //     axios.get("/api/logout").then(res=>{
+  //         console.log(res);
+  //     })
 
-        // axios.get("/api/logout").then(res=>{
-        //     console.log(res);
-        // })
-
-        history.push('/login');
-    }
+  //     // history.push('/login');
+  // }
 
   return (
-
     <div>
       {/*Navbar */}
-      <nav className="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-        <div class="container">
+      <nav className="mb-1 navbar navbar-expand-lg navbar-dark elegant-color">
+        <div className="container">
           <a className="navbar-brand" href="/home">
-            aMuse
+            <img
+              src={require("../../images/logo.png")}
+              height={30}
+              alt="aMuse logo"
+            />
           </a>
           <button
             className="navbar-toggler"
@@ -69,9 +71,9 @@ const Header = (props) => {
                 Search
               </button>
             </form>
-          
+
             <ul className="navbar-nav ml-auto nav-flex-icons">
-            <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link" href="#">
                   Upload
                 </a>
@@ -93,7 +95,7 @@ const Header = (props) => {
                   <a className="dropdown-item" href="#">
                     Profile
                   </a>
-                  <a className="dropdown-item" onClick={logout} >
+                  <a className="dropdown-item" href="/api/logout">
                     Logout
                   </a>
                 </div>
@@ -109,4 +111,4 @@ const Header = (props) => {
 
 export default Header;
 
-// button onclick ref function... function= axios call to
+

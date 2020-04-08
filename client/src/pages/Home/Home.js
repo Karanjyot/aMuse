@@ -1,17 +1,17 @@
 import React from "react";
 
-
-import "./home.css"
+import "./home.css";
 import Header from "../../components/Header/Header";
+import Carousel from "../../components/Carousel/Carousel";
 
-
-const Home = () =>{
-    return(
-        <div id="homepage">
-            <Header />
-            <h2>Dashboard</h2>
-        </div>
-    );
+const Home = () => {
+  return (
+    <div id="homepage">
+      <Header />
+      <Carousel />
+      
+    </div>
+  );
 };
 
-export default Home
+export default Home;
