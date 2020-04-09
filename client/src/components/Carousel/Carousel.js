@@ -9,8 +9,8 @@ import "./carousel.css";
 const Carousel = (props) => {
   return (
     <div>
-      <div className="container">
-        <div>
+     
+        <div className="carousel-padding">
           <div
             id="carousel-example-1z"
             className="carousel slide carousel-fade"
@@ -52,7 +52,6 @@ const Carousel = (props) => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

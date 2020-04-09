@@ -12,6 +12,9 @@ const Home = () => {
     <div className="container">
       <Carousel />
       <MusicDisplay />
+      <MusicDisplay />
+      <MusicDisplay />
+      <MusicDisplay />
     </div>
     </div>
   );
