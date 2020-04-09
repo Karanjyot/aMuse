@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './backdrop.css'
 /**
 * @author
 * @function Backdrop
@@ -7,7 +7,8 @@ import React from 'react'
 
 const Backdrop = (props) => {
   return(
-    <div>Backdrop</div>
+    <div onClick={props.clicked}  
+         className="backdrop"></div>
    )
 
  }
