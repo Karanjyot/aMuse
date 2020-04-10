@@ -53,7 +53,7 @@ module.exports=(app) =>{
     //logout is automatically attached to the req object by passport. It takes the cookie that contains user id and removes the id. 
     app.get("/api/logout", (req,res) =>{
         req.logout();
-        res.redirect("/")
+        res.redirect("/");
     })
 
     //send back the user. User is automatically attached to the req object by passport. Route to determine if user is signed in. 
