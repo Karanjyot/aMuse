@@ -44,13 +44,13 @@ const Header = (props) => {
           >
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/home">
                   Home
                   <span className="sr-only">(current)</span>
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/library">
                   Library
                 </a>
               </li>
@@ -74,7 +74,7 @@ const Header = (props) => {
 
             <ul className="navbar-nav ml-auto nav-flex-icons">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/upload">
                   Upload
                 </a>
               </li>
@@ -92,7 +92,7 @@ const Header = (props) => {
                   className="dropdown-menu dropdown-menu-right dropdown-default"
                   aria-labelledby="navbarDropdownMenuLink-333"
                 >
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/profile">
                     Profile
                   </a>
                   <a className="dropdown-item" href="/api/logout">

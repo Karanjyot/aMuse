@@ -59,10 +59,8 @@ const MusicDisplay = (props) => {
             <div className="card-body">
               <h5 className="card-title">Song Name</h5>
               <p className="card-text">Artist</p>
-              <a href="#" className="btn btn-primary">
-                Play
-              </a>
-              <a><i class="fas fa-plus"></i></a>
+              <button className="btn btn-primary"><i className="fas fa-play"></i></button>
+              <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -86,10 +84,8 @@ const MusicDisplay = (props) => {
             <div className="card-body">
               <h5 className="card-title">Song Name</h5>
               <p className="card-text">Artist</p>
-              <a href="#" className="btn btn-primary">
-                Play
-              </a>
-              <a><i class="fas fa-plus"></i></a>
+              <button className="btn btn-primary"><i className="fas fa-play"></i></button>
+              <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -104,10 +100,8 @@ const MusicDisplay = (props) => {
             <div className="card-body">
               <h5 className="card-title">Song Name</h5>
               <p className="card-text">Artist</p>
-              <a href="#" className="btn btn-primary">
-                Play
-              </a>
-              <a><i class="fas fa-plus"></i></a>
+              <button className="btn btn-primary"><i className="fas fa-play"></i></button>
+              <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -122,10 +116,8 @@ const MusicDisplay = (props) => {
             <div className="card-body">
               <h5 className="card-title">Song Name</h5>
               <p className="card-text">Artist</p>
-              <a href="#" className="btn btn-primary">
-                Play
-              </a>
-              <a><i class="fas fa-plus"></i></a>
+              <button className="btn btn-primary"><i className="fas fa-play"></i></button>
+              <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -140,43 +132,41 @@ const MusicDisplay = (props) => {
             <div className="card-body">
               <h5 className="card-title">Song Name</h5>
               <p className="card-text">Artist</p>
-              <a href="#" className="btn btn-primary">
-                Play
-              </a>
-              <a><i class="fas fa-plus"></i></a>
+              <button className="btn btn-primary"><i className="fas fa-play"></i></button>
+              <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
       </div>
       {/* Pagination */}
       <nav aria-label="Page navigation example " className="page-padding">
-        <ul class="pagination pg-blue justify-content-center">
-          <li class="page-item ">
-            <a class="page-link" tabindex="-1">
-              Previous
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">1</a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link">
-              2 <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">3</a>
-          </li>
-          <li class="page-item ">
-            <a class="page-link">Next</a>
-          </li>
-        </ul>
-      </nav>
+  <ul className="pagination pg-blue justify-content-center">
+    <li className="page-item ">
+      <a className="page-link" tabIndex={-1}>
+        Previous
+      </a>
+    </li>
+    <li className="page-item">
+      <a className="page-link">1</a>
+    </li>
+    <li className="page-item active">
+      <a className="page-link">
+        2 <span className="sr-only">(current)</span>
+      </a>
+    </li>
+    <li className="page-item">
+      <a className="page-link">3</a>
+    </li>
+    <li className="page-item ">
+      <a className="page-link">Next</a>
+    </li>
+  </ul>
+</nav>
      
 
 </div>
 
-
+{ /********************************************** Slider ****************************************************/ }
 <div className="App jumbotron">
   <h1 className="genre">Genre</h1>
 <Slider

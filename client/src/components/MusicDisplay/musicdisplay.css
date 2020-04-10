@@ -6,36 +6,40 @@
     padding-top: 20px;
 }
 
-.fa-plus{
-
-    padding-left: 65px;
-}
 
 
 
 
-.slider {
+/* .slider {
   width: 50%;
   margin: 100px auto;
-}
+} */
 
-.slick-slide {
+/* .slick-slide {
 margin: 0px;
-}
-
+} */
+/* 
 .slick-slide img {
 width: 100%;
-}
+} */
 
 
 
-.slick-slide {
+/* .slick-slide {
 transition: all ease-in-out .3s;
-/* opacity: .2; */
-}
+opacity: .2;
+} */
 
-.slick-active {
+/* .slick-active {
 opacity: .5;
-}
-
+} */
+.btn-add {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 10px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    margin-left: 55px;
+  }
 
