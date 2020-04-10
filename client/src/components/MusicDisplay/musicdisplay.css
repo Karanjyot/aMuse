@@ -10,3 +10,32 @@
 
     padding-left: 65px;
 }
+
+
+
+
+.slider {
+  width: 50%;
+  margin: 100px auto;
+}
+
+.slick-slide {
+margin: 0px;
+}
+
+.slick-slide img {
+width: 100%;
+}
+
+
+
+.slick-slide {
+transition: all ease-in-out .3s;
+/* opacity: .2; */
+}
+
+.slick-active {
+opacity: .5;
+}
+
+

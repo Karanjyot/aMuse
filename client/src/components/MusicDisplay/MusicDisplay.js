@@ -1,20 +1,77 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import "./musicdisplay.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 /**
  * @author
  * @function MusicDisplay
  **/
 
+ /******************************** slick slider functions**************************************************/ 
+function Arrow(props) {
+  let className = props.type === "next" ? "nextArrow" : "prevArrow";
+  className += " arrow";
+  const char = props.type === "next" ? "👉" : "👈";
+  return (
+    <span className={className} onClick={props.onClick}>
+      {char}
+    </span>
+  );
+}
+
+
+function customPaging(i) {
+  return <span>{i + 1}</span>;
+}
+
+function appendDots(dots) {
+  return (
+    <div style={{ backgroundColor: "#eee" }}>
+      <ul style={{ margin: "3px" }}> {dots} </ul>
+    </div>
+  );
+}
+
+
+/********************************************** Component to render****************************************************/ 
 const MusicDisplay = (props) => {
   useEffect(() => {
     $("li").click(function () {
       $(this).addClass("active").siblings().removeClass("active");
+      
+  
     });
   }, []);
 
+  const renderSlides = () =>
+  [1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+    <div>
+        <div className="col">
+          <div className="card">
+            <img
+              src={require("../../images/jcole.jpg")}
+              className="card-img-top"
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title">Song Name</h5>
+              <p className="card-text">Artist</p>
+              <a href="#" className="btn btn-primary">
+                Play
+              </a>
+              <a><i class="fas fa-plus"></i></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  ));
+
+
   return (
+    <div>
     <div className="jumbotron">
       <h1 className="genre">Genre</h1>
       <div className="row">
@@ -115,7 +172,32 @@ const MusicDisplay = (props) => {
           </li>
         </ul>
       </nav>
+     
+
+</div>
+
+
+<div className="App jumbotron">
+  <h1 className="genre">Genre</h1>
+<Slider
+     
+        slidesToShow={4}
+        slidesToScroll={2}
+        autoplay={false}
+        // autoplaySpeed={3000}
+        nextArrow={<Arrow type="next" />}
+        prevArrow={<Arrow type="prev" />}
+        dots={true}
+        customPaging={customPaging}
+        appendDots={appendDots}
+      >
+        {renderSlides()}
+        
+      </Slider>
     </div>
+
+</div>
+   
   );
 };
 
