@@ -3,7 +3,7 @@ const isAuthenticated = require('../middleware/isAuthenticated');
 const User = require('../models/User');
 module.exports=(app) =>{
 
-//Google Aithentication 
+//Google Authentication 
     //when user hits this route we ask passport to authenticate using the strategy called google. Scope allows google to know what permissions we are asking for.
     app.get("/auth/google", passport.authenticate("google",{
         scope: ["profile", "email"]
@@ -13,6 +13,7 @@ module.exports=(app) =>{
     //once user is confirm authentication,user is redirected to url below with a code. Passport calls on the google strategy which calls on accessToken inside GoogleStrategy.
     app.get("/auth/google/callback", passport.authenticate("google"), (req,res)=>{
 
+  
         // redirect to the home route handler
         res.redirect('/home');
     });
@@ -58,6 +59,7 @@ module.exports=(app) =>{
 
     //send back the user. User is automatically attached to the req object by passport. Route to determine if user is signed in. 
     app.get("/api/current_user", isAuthenticated, (req,res)=>{
+        console.log(req.user)
         res.send(req.user);
     });
 

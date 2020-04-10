@@ -7,6 +7,7 @@ import './App.css';
 import Signup from "./pages/Signup/Signup"
 import Login from "./pages/Login/Login"
 import Home from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile"
 
 
 
@@ -17,8 +18,10 @@ const App = () =>{
                         <Route exact path = "/" component = {Signup} />
                         <Route path = "/login" component = {Login} />
                         <Route path ="/home" component ={Home} />  
+                        <Route path ="/profile" component ={Profile} />  
+
                 </BrowserRouter>
-            </div>
+            </div   >
         ) 
 };
 
