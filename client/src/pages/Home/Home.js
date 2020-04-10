@@ -22,16 +22,15 @@ const Home = () => {
   return (
     <div id="homepage">
       <Header />
+      <button
+          onClick={toggleMenuHandler}
+          className="btn #ff7043 deep-orange lighten-1 menu-for-tablet"
+        >
+          View Account
+      </button>
       <div className="container">
         <Carousel />
         <MusicDisplay />
-        <h2>Dashboard</h2>
-        <button
-          onClick={toggleMenuHandler}
-          className="btn #ff7043 deep-orange lighten-1"
-        >
-          View Account
-        </button>
         {backdrop}
         <SlideMenu show={showMenu} />
       </div>

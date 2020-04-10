@@ -169,7 +169,8 @@ const MusicDisplay = (props) => {
 { /********************************************** Slider ****************************************************/ }
 <div className="App jumbotron">
   <h1 className="genre">Genre</h1>
-<Slider
+    
+    <Slider
      
         slidesToShow={4}
         slidesToScroll={2}
@@ -181,8 +182,7 @@ const MusicDisplay = (props) => {
         customPaging={customPaging}
         appendDots={appendDots}
       >
-        {renderSlides()}
-        
+        {renderSlides()} 
       </Slider>
     </div>
 

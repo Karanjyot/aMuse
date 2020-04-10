@@ -5,3 +5,12 @@
      background: rgb(242,242,242);
 
 }
+
+.menu-for-tablet{
+    display: none;
+}
+@media (max-width: 985px) {
+    .menu-for-tablet {
+        display: block;
+    }
+}
