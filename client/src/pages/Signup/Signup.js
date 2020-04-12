@@ -11,6 +11,8 @@ const Signup = (props) =>{
   const [password, setPassword] = useState("");
   
   let history = useHistory();
+
+ 
   const submitFormHandler = (event)=> {
     event.preventDefault();
     const obj= {
@@ -19,7 +21,6 @@ const Signup = (props) =>{
     }
     axios.post('/api/local/signin', obj)
       .then(res=> {
-        console.log(res);
         history.push('/home');
       }).catch(err=> console.log(err))
   }
@@ -77,6 +78,7 @@ const Signup = (props) =>{
   <div className="text-center">Already have an account? <a href="/login">Login here</a></div>
 </div>
 </div>
+         
 
     )
 }
