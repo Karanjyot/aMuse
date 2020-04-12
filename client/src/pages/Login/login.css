@@ -1,8 +1,8 @@
-
+/* 
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
   *:focus {
     outline: none;
-  }
+  } */
 /*   
   body {
     margin: 0;
@@ -14,7 +14,7 @@
     font-weight: 300;
   } */
   
-  #login-box {
+  /* #login-box {
     position: relative;
     margin: 5% auto;
     width: 40rem;
@@ -160,4 +160,4 @@
   
   button.social-signin.google {
     background: #DD4B39;
-  }
+  } */
