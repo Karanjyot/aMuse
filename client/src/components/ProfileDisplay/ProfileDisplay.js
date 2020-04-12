@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./profiledisplay.css";
+import { PromiseProvider } from "mongoose";
 
 /**
 * @author
 * @function ProfileCarousel
 **/
 
-const ProfileDisplay = () =>{
+const ProfileDisplay = (props) =>{
 
     const [user, setUser] = useState([]);
 
@@ -40,7 +41,9 @@ const ProfileDisplay = () =>{
               <p>The best rapper out there</p>
             </div>
           </div>
-          <button id="imgBut"><i className="fas fa-camera">Upload image</i></button>
+          <button onClick={()=> props.uploadMenu()}
+                  id="imgBut"><i className="fas fa-camera">Upload image</i>
+          </button>
         </div> 
         </div>
     )

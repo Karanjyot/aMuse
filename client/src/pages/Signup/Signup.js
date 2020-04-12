@@ -11,6 +11,8 @@ const Signup = (props) =>{
   const [password, setPassword] = useState("");
   
   let history = useHistory();
+
+ 
   const submitFormHandler = (event)=> {
     event.preventDefault();
     const obj= {
@@ -19,7 +21,6 @@ const Signup = (props) =>{
     }
     axios.post('/api/local/signin', obj)
       .then(res=> {
-        console.log(res);
         history.push('/home');
       }).catch(err=> console.log(err))
   }
@@ -49,7 +50,8 @@ const Signup = (props) =>{
           <div id="right">
             <span className="loginwith"><br/><br/><br/><br/></span>
 
-            <a href="/auth/google"><button className="social-signin google">Log in with Google+</button></a> 
+            {/*  */}
+            <a href="/auth/google" ><button  className="social-signin google">Log in with Google+</button></a>
           </div>
           <div className="or">OR</div>
         </div>

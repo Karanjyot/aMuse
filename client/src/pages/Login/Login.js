@@ -18,7 +18,6 @@ const Login = () =>{
     }
     axios.post('/api/local/login', obj)
       .then(res=> {
-        console.log(res);
         history.push('/home');
       }).catch(err=> console.log(err))
   }
