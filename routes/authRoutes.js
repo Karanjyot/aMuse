@@ -1,6 +1,7 @@
 const passport = require("passport")
 const isAuthenticated = require('../middleware/isAuthenticated');
 const User = require('../models/User');
+const Account = require('../models/Account');
 module.exports=(app) =>{
 
 //Google Authentication 
@@ -12,10 +13,8 @@ module.exports=(app) =>{
     );
     //once user is confirm authentication,user is redirected to url below with a code. Passport calls on the google strategy which calls on accessToken inside GoogleStrategy.
     app.get("/auth/google/callback", passport.authenticate("google"), (req,res)=>{
-
-  
-        // redirect to the home route handler
-        res.redirect('/home');
+            res.redirect('/home');
+        // redirect to the home route handler 
     });
 //***********************************************************************************************************
 
@@ -28,11 +27,22 @@ module.exports=(app) =>{
         }
         User.create(userNew)
             .then(usr => {
-                passport.authenticate("local")(req, res, ()=> {
-                    res.json({
-                        msg: "Sign-in Successful"
+                const account = {
+                    artist_nickname: "",
+                    genre: "",
+                    description: "",
+                    country: "",
+                    city: "",
+                    userId: usr._id
+                }
+                Account.create(account)
+                    .then(acc=> {
+                        passport.authenticate("local")(req, res, ()=> {
+                            res.json({
+                                msg: "Sign-in Successful"
+                            });
+                        });
                     });
-                });
             }).catch(err=> {
                 res.json({
                     msg: err.message,

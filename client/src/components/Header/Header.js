@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./header.css";
+import {Link} from 'react-router-dom';
 
 const Header = (props) => {
   // let history = useHistory();
