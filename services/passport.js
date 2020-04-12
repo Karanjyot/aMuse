@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // user class 
 const User = mongoose.model("users");
+const Account = require('../models/Account');
 
 // user arguement is the user we retrieved from the db. Turn mongo model instance to user ID. Put Id into the cookie.
 passport.serializeUser((user,done)=>{
@@ -41,6 +42,7 @@ passport.use(new GoogleStrategy({
                 //creates record using model instance and saves it
                const user = await new User({ googleId: profile.id, name: profile.displayName }).save()
                 // once user is created, pass user to passport and continue the authentication flow. 
+               const account = await new Account({userId: user._id}).save();
                 done(null,user);
             }
      
