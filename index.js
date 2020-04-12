@@ -31,12 +31,6 @@ app.use(passport.session());
 
 authRoutes(app);
 
-<<<<<<< HEAD
-
-
-const PORT = process.env.PORT || 5000
-=======
 const PORT = process.env.PORT || 5000;
->>>>>>> 34486768b8309cf5b213d0d7ca13b19d5ccbc63b
 // listen to port 
 app.listen(PORT);

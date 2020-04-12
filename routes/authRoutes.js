@@ -18,14 +18,7 @@ module.exports=(app) =>{
         // redirect to the home route handler 
     });
 
-<<<<<<< HEAD
-    app.get("/home", isAuthenticated, (req,res)=>{
-
-     res.redirect("/login")
-    })
 //***********************************************************************************************************
-=======
->>>>>>> 34486768b8309cf5b213d0d7ca13b19d5ccbc63b
 
 //Local Authentication
 
