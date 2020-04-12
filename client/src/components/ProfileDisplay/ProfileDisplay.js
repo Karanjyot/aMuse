@@ -1,43 +1,31 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import "./profileCarousel.css";
+import "./profiledisplay.css";
 
 /**
 * @author
 * @function ProfileCarousel
 **/
 
-const ProfileCarousel = () =>{
+const ProfileDisplay = () =>{
 
     const [user, setUser] = useState([]);
-    const [local, setLocal] = useState([]);
 
 
-    const fetchResource = async () =>{
-        const response = await axios.get("/api/current_user")
+    const fetchUser = () =>{
+        axios.get("/api/current_user").then(response =>{
+          
+          console.log(response.data)
+          if(response.data.name){
+            setUser(response.data.name)
+        }else{
+            setUser(response.data.email)
+        }
+        })}
  
-             console.log(response.data)
-             // this.setstate({ user: response.data})
-
-            if(response.data.name){
-                setUser(response.data.name)
-            }else{
-                setUser(response.data.email)
-            }
-             
- 
- 
-      }
-
-    // const fetchLocal = async() =>{
-    //  const response =   await axios.post('/api/local/signin')
-     
-    //     setLocal(response.data.config.email)
-    // }  
 
     useEffect(() =>{
-        fetchResource()
-        // fetchLocal()
+        fetchUser()
     }, [])
 
 
@@ -59,4 +47,4 @@ const ProfileCarousel = () =>{
     )
 }
 
-export default ProfileCarousel
+export default ProfileDisplay

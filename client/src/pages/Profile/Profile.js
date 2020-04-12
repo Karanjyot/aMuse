@@ -1,6 +1,6 @@
 import React from "react";
 import "./profile.css"
-import ProfileCarousel from "../../components/ProfileCarousel/ProfileCarousel"
+import ProfileDisplay from "../../components/ProfileDisplay/ProfileDisplay"
 import Header from "../../components/Header/Header"
 import UserMusic from "../../components/UserMusic/UserMusic"
 
@@ -12,7 +12,7 @@ return (
     <div id="profilePage">
     <div className="container" >
         <Header />
-        <ProfileCarousel />
+        <ProfileDisplay />
         <UserMusic />
     </div>
     </div>
