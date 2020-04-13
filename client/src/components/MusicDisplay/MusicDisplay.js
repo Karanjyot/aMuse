@@ -57,8 +57,8 @@ const MusicDisplay = (props) => {
               alt="..."
             />
             <div className="card-body">
-              <h5 className="card-title">Song Name</h5>
-              <p className="card-text">Artist</p>
+              <a href="/audioplayer"><h5 className="card-title">Song Name</h5></a>
+              <a href="/audioplayer"><p className="card-text">Artist</p></a>
               <button className="btn btn-primary"><i className="fas fa-play"></i></button>
               <button className="btn-add"><i className="fas fa-plus"></i></button>
             </div>
