@@ -10,12 +10,13 @@ import Backdrop from '../../components/Backdrop/Backdrop';
 
 
 const Profile = () =>{
-    const [showMenu, setShowMenu] = useState(false);
-    const [wantUpdate, setWantUpdate] = useState(false);
-    const [account, setAccount] = useState({});
-    const [id, setID] = useState("");
+    const [showMenu, setShowMenu] = useState(false);//controls the side menu
+    const [wantUpdate, setWantUpdate] = useState(false);//boolean to control update of general info
+    const [account, setAccount] = useState({});//the account object in its entirety
+    const [id, setID] = useState(""); //this is the account id(primary key for 'Account' model)
+    const [imgs, setImgs] = useState([]);//account image array
 
-    //form states 
+    //form states for when we update the general info
     const [name, setName] = useState("");
     const [genre, setGenre] = useState("");
     const [desc, setDesc] = useState("");
@@ -34,9 +35,10 @@ const Profile = () =>{
           setDesc(res.data.account.description);
           setCountry(res.data.account.country);
           setCity(res.data.account.city);
+          setImgs([...res.data.account.images])
         }).catch(err=> console.log(err));
     }, []);
-
+    //Submiting updated values for the general info form
     const submitUpdateHandler = (e)=> {
       e.preventDefault();
       const obj = {
@@ -53,6 +55,7 @@ const Profile = () =>{
         console.log(err);
       })
     }
+    //Controlling the opening and closing of the sideDrawer Menu
     const toggleMenuHandler = () => {
       setShowMenu(!showMenu);
     };
@@ -87,7 +90,7 @@ return (
         </div>
         <UserMusic />
         {backdrop}
-        <UploadMenu show={showMenu}/>     
+        <UploadMenu show={showMenu} accId={id} accountImages = {imgs}/>     
     </div>
     </div>
 )

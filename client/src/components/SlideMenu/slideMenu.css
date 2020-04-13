@@ -4,13 +4,14 @@
    justify-content: space-between;
     align-items: center;
     height: 100%;
-    background: white;
+    background: #EEE5E9;
     position: fixed;
     top: 0;
     right: 0;
     width: 50%;
     z-index: 200;
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5); 
+   overflow-y: scroll;
     transform: translateX(100%);
     transition: transform 0.3s ease-out;
   
@@ -24,9 +25,9 @@
     height:10%; 
     text-align: center;
     width: 100%;
-    background-color: #3DA5D9;
-    color: white;
-    border-bottom: 3px double #FF6700;
+    background-color: rgb(5, 4, 4, 0.92);
+    color: #EEE5E9;
+    border-bottom: 3px double #0D3B66;
     margin-bottom: 0.1rem;
     border-radius: 5px;
  }
@@ -39,6 +40,7 @@
     width: 98%;
     font-weight:400;
     margin-bottom: 0.15rem;
+ 
   
 
  }
@@ -46,14 +48,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
-    height: 10%;
-    padding: 0.5rem;
+    height: 30px;
+    padding: 0.7rem;
     font-size: 28px;
-    background-color: #0D3B66;
+    background-color:#3DA5D9 ;
     color: white;
-  
+    font-weight:300;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    /* rgb(5, 4, 4, 0.9) */
  }
  .upload-song-form{
     display:flex;
@@ -75,10 +80,59 @@
  }
 
  .select-album-cover{
-    background-color: black;
-    color: silver;
-    font-size: 30px;
+    background-color:#EEE5E9;
+    color: #0D3B66;
+  font-weight: 400;
     width: 98%;
-    min-height: 25%;
+    min-height: 33%;
     text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: flex-start;
+   
+
  }
+ .select-album-title{
+    width: 100%;
+    height: 30px;
+    background-color:#3DA5D9;
+    color: white;
+    padding: 0.7rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items:center;
+    font-size: 28px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: 300;
+    margin-bottom: 1rem;
+ 
+ }
+ .images-to-select{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+  
+   
+ }
+ .each-photo{
+    width: 20%;
+    box-shadow: 1px 1px 3px black;
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 100%;
+ }
+
+.add-image-btn{
+   cursor: pointer;
+   border: 1px solid transparent;
+}
+.add-image-btn:hover{
+   cursor: pointer;
+   border: 1px solid orange;
+}
