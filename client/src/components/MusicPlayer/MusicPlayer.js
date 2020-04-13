@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./musicplayer.css";
+import axios from "axios"
 
 /**
  * @author
@@ -9,6 +10,10 @@ import "./musicplayer.css";
 const MusicPlayer = (props) => {
   const player = useRef();
   const [isPlaying, setisPlaying] = useState(false);
+
+
+ 
+
 
   // Function to control state if song is playing or paused
   const play = () => {

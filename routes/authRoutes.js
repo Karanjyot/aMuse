@@ -167,9 +167,28 @@ app.post('/api/current_user/upload_song/:id', isAuthenticated, (req, res)=>{
 })
 
 
+// retrieve all songs
+
+app.get('/api/songs', isAuthenticated, (req,res)=>{
+
+    Song.find({}).then(songs =>{
+        res.json({songs:songs})
+    })
+})
 
 
+// msg:'Success, accounts found',
+// accounts:accounts,
+// app.get('/api/accounts/find',isAuthenticated, (req, res)=> {
+//     Account.find({})
+//         .then(accounts => {
+//             res.json({
+//                 msg:'Success, accounts found',
+//                 accounts:accounts,
+//                 currentUser: req.user
 
+//             });
+//         }).catch(err=> console.log(err));
 
 
 
