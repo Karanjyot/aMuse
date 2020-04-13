@@ -22,7 +22,7 @@ const Profile = () =>{
     const [desc, setDesc] = useState("");
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
-
+    const [updateControl, setUpdateControl] = useState(false);
     //finding the account of the active user
     useEffect(()=> {
       axios.get(`/api/current_user/data`)
@@ -37,7 +37,7 @@ const Profile = () =>{
           setCity(res.data.account.city);
           setImgs([...res.data.account.images])
         }).catch(err=> console.log(err));
-    }, []);
+    }, [showMenu,updateControl]);
     //Submiting updated values for the general info form
     const submitUpdateHandler = (e)=> {
       e.preventDefault();
@@ -56,6 +56,9 @@ const Profile = () =>{
       })
     }
     //Controlling the opening and closing of the sideDrawer Menu
+    const updateControlHandler = ()=>{
+      setUpdateControl(!updateControl);
+    }
     const toggleMenuHandler = () => {
       setShowMenu(!showMenu);
     };
@@ -90,7 +93,7 @@ return (
         </div>
         <UserMusic />
         {backdrop}
-        <UploadMenu show={showMenu} accId={id} accountImages = {imgs} closeMenu={closeMenuHandler}/>     
+        <UploadMenu show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
     </div>
     </div>
 )
