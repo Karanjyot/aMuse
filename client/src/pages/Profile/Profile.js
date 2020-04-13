@@ -90,7 +90,7 @@ return (
         </div>
         <UserMusic />
         {backdrop}
-        <UploadMenu show={showMenu} accId={id} accountImages = {imgs}/>     
+        <UploadMenu show={showMenu} accId={id} accountImages = {imgs} closeMenu={closeMenuHandler}/>     
     </div>
     </div>
 )
