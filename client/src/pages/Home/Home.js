@@ -22,7 +22,6 @@ const Home = () => {
   return (
     <div id="homepage">
       <Header />
-
       <div className="container">
         <Carousel />
         <MusicDisplay />

@@ -9,7 +9,7 @@ require("./models/User");
 require("./services/passport");
 const authRoutes = require("./routes/authRoutes")
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/email_app", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/email_app", {useFindAndModify:false, useNewUrlParser: true, useUnifiedTopology: true });
 
 // generate app object
 const app = express();
