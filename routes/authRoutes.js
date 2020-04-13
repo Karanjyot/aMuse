@@ -2,7 +2,8 @@ const passport = require("passport")
 const isAuthenticated = require('../middleware/isAuthenticated');
 const User = require('../models/User');
 const Account = require('../models/Account');
-const cors = require('cors');
+const Song = require('../models/Song');
+const Image = require('../models/Image');
 module.exports=(app) =>{
 //*****************************************AUTHENTICATION ROUTES******************************************************************
 //Google Authentication 
@@ -91,7 +92,7 @@ app.get('/api/current_user/data', isAuthenticated, (req, res)=> {
     const id = req.user._id;
     Account.findOne({
         userId: id
-    })
+    }).populate('songs').populate('images')
         .then(account=> {
             res.json({
                 msg: 'Found users account',
@@ -117,6 +118,53 @@ app.post('/api/current_user/update/:id', isAuthenticated,(req, res)=> {
         });
     }).catch(err=> console.log(err));
 });
+//Upload and store images route
+app.post('/api/current_user/upload_img/:id', isAuthenticated, (req, res)=> {
+    const image = {
+        name: req.body.name,
+        downloadURL: req.body.downloadURL,
+        authorID: req.user._id
+    }
+    Account.findById(req.params.id)
+        .then(acc => {
+            Image.create(image)
+                .then(img=> {
+                    acc.images.push(img);
+                    acc.save();
+                    res.json({
+                        msg: "Your album photo was successfully uploaded to your account"
+                    });
+                }).catch(err=> console.log(err));
+        }).catch(err=> {
+            res.json({
+                msg: err.message,
+                error: err
+            });
+        });
+});
+//Upload and store mp3 files
+app.post('/api/current_user/upload_song/:id', isAuthenticated, (req, res)=>{
+    const song = {
+        name: req.body.name,
+        downloadURL: req.body.downloadURL,
+        albumPhoto: req.body.albumPhoto,
+        authorID: req.user._id
+    }
+    Account.findById(req.params.id)
+        .then(acc=> {
+            Song.create(song)
+                .then(sng=> {
+                    acc.songs.push(sng);
+                    acc.save();
+                    res.json({
+                        msg: "Song has been successfully stored",
+                    });
+                }).catch(err=> console.log(err));
+        }).catch(err=> res.json({
+            msg: 'Account not found',
+            error: err
+        }))
+})
 
 
 
