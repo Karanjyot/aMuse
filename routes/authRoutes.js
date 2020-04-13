@@ -77,7 +77,7 @@ app.get("/api/current_user", isAuthenticated, (req,res)=>{
 });
 //Retrieving accounts for the home page along with the usersId 
 app.get('/api/accounts/find',isAuthenticated, (req, res)=> {
-    Account.find({})
+    Account.find({}).populate('songs').populate('images')
         .then(accounts => {
             res.json({
                 msg:'Success, accounts found',
