@@ -73,7 +73,7 @@ return (
     <div id="profilePage">
     <div className="container" >
         <Header />
-        <ProfileDisplay uploadMenu = {toggleMenuHandler} />
+        <ProfileDisplay usersAccount= {account} uploadMenu = {toggleMenuHandler} />
         {/* THE DIV BELOW REQUIRES CONDITIONAL RENDERING */}
         <div className="general-info">
           <span>
