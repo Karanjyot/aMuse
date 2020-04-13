@@ -186,3 +186,18 @@ input::-webkit-slider-thumb {
 		background-position: 0 0;
 	}
 }
+
+  .image-parent {
+    max-width: 40px;
+    padding-right: 20px;
+  }
+
+  .play-list{
+    margin-left: 600px;
+    margin-top: 50px;
+  }
+
+  .play-listitem{
+      
+    margin-left:auto; margin-right:0;
+  }
