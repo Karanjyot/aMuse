@@ -20,6 +20,7 @@ const SlideMenu = (props) => {
   const [url, setURL] = useState("");
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSongUploading, setIsSongUploading] = useState(false);
   
   //state pertaining to photo upload
   const [photoSrc, setPhotoSrc] = useState(null);
@@ -54,7 +55,10 @@ const SlideMenu = (props) => {
       .then(res=> {
         console.log(res);
         setIsLoading(false);
-      }).catch(err=> console.log(err));
+      }).catch(err=> {
+        console.log(err);
+        setIsLoading(false);
+      });
   }
   const uploadFileHandler = (e) => {
     e.preventDefault();
@@ -97,11 +101,16 @@ const SlideMenu = (props) => {
       albumPhoto: imgURL
     }
     axios.post(`/api/current_user/upload_song/${props.accId}`, songObject)
-      .then(res=> console.log(res))
-      .catch(err=> console.log(err));
+      .then(res=> {
+        setIsSongUploading(false);
+      })
+      .catch(err=>{
+        setIsSongUploading(false);
+      });
   }
   const uploadMP3Handler = (e)=> {
     e.preventDefault();
+    setIsSongUploading(true)
     const song = src;
     const nameofSong = song.name.toString();
     const metadata = {
@@ -160,13 +169,27 @@ const SlideMenu = (props) => {
                       </p>
                    </div>
     }
-
-  let loader;
-  if(isLoading){
-    loader = <Loader />
-  }else {
-    loader = null;
+  //Loader that controls the upload of images
+    let loader;
+    if(isLoading){
+      loader = <div>
+                <p>{theProgress}%</p>
+                <Loader />
+               </div>
+    }else {
+      loader = null;
+    }
+  //Loader that controls the uploads of songs
+  let mp3Loader;
+  if(isSongUploading){
+   mp3Loader = <div>
+                 <p>{progress}%</p>
+                 <Loader />
+               </div>
+  }else{
+    mp3Loader = null;
   }
+  //class that support the opening and closing of the menu
   let drawerClasses = 'side-drawer'
     if(props.show) {
        drawerClasses = 'side-drawer open'
@@ -190,21 +213,18 @@ const SlideMenu = (props) => {
           Album Uploads
        </div>
        <div className="upload-song-form">
-         <img className="mt-4"  src={photo} width="auto" height="50" />
+          <img className="mt-4"  src={photo} width="auto" height="50" />
           <form onSubmit={uploadFileHandler}>  
             <div className="form-group">
               <label>Upload New Album Cover</label>
               <input onChange={handleImgChange} type="file" className="form-control-file" />
             </div>
             <button type="submit" className="btn btn-primary btn-sm">Upload</button>
-          </form>
-          <div>
-            <p>{theProgress}%</p>
-            {loader}
-          </div>
+          </form>         
+            {loader} 
        </div>
        <div className="upload-song-form">
-       <img  className="mt-4" src={note} height="50" width="auto" />
+          <img  className="mt-4" src={note} height="50" width="auto" />
           <form onSubmit={uploadMP3Handler}>  
             <div className="form-group">
               <label>Upload New Song</label>
@@ -212,7 +232,7 @@ const SlideMenu = (props) => {
             </div>
             <button type="submit" className="btn btn-info btn-sm">Upload</button>
           </form>
-          <p>{progress}</p>
+          {mp3Loader}
        </div>
       </div>
       
