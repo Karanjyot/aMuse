@@ -8,6 +8,7 @@ import Signup from "./pages/Signup/Signup"
 import Login from "./pages/Login/Login"
 import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
+import AudioPlayer from "./pages/AudioPlayer/AudioPlayer"
 
 
 
@@ -19,6 +20,7 @@ const App = () =>{
                         <Route path = "/login" component = {Login} />
                         <Route path ="/home" component ={Home} />  
                         <Route path ="/profile" component ={Profile} />  
+                        <Route path ="/audioplayer" component ={AudioPlayer} /> 
 
                 </BrowserRouter>
             </div   >

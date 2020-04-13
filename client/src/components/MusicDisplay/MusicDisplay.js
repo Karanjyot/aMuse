@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import $ from "jquery";
 import "./musicdisplay.css";
 import "slick-carousel/slick/slick.css";
@@ -67,7 +67,7 @@ const MusicDisplay = (props) => {
     </div>
   ));
 
-
+   
   return (
     <div>
     <div className="jumbotron">
