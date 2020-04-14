@@ -43,3 +43,11 @@ opacity: .5;
     margin-left: 0px;
   }
 
+  .jb{
+    height: 500px!important;
+    overflow: auto;
+}
+
+.jb::-webkit-scrollbar { width: 0 !important }
+.jb { overflow: -moz-scrollbars-none; }
+.jb { -ms-overflow-style: none; }

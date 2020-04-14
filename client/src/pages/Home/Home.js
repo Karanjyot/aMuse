@@ -33,7 +33,7 @@ const Home = () => {
       <div className="container">
         <Carousel />
         {allSongs}
-        <MusicDisplay songs={allSongs}/>
+        <MusicDisplay songs={accounts}/>
       </div>
     </div>
   );
