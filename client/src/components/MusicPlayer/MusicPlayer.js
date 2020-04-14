@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./musicplayer.css";
-
+import drake from '../../images/drake.jpg';
 /**
  * @author
  * @function MusicPlayer
@@ -44,36 +44,48 @@ const MusicPlayer = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        <audio ref={player} preload="auto" controls>
-          <source src={require("./Nas.mp3")} type="audio/mpeg"></source>
-        </audio>
+    <div className="container">
+      <div className="row mt-4">
+        <div className="col-md-6 d-flex flex-column align-items-center justify-content-center">
+          <audio ref={player}>
+            <source src={require("./Nas.mp3")} type="audio/mpeg"></source>
+          </audio>
+          <div className="glow container">
+            <div className="text-container">
+              <span className="text">Song Name</span>
+              <br />
+              <div className="playback_controls">
+                <button className="audioBut" onClick="skip('back')">
+                  <i className="fa fa-fast-backward" />
+                </button>
+                {renderPlay()}
+                <button className="audioBut" onClick={stop}>
+                  <i className="fa fa-stop" />
+                </button>
+                <button className="audioBut" onClick="skip('fwd')">
+                  <i className="fa fa-fast-forward" />
+                </button>
+              </div>
+              <br />
+              <div id="seekbar">
+                <input type="range" oninput="f" id="seek" defaultValue={0} />
+              </div>
+              <br />
+          </div>
+        </div>
+       </div>
+       <div className="col-md-5 d-flex flex-column align-items-center justify-content-around">
+         <h1>Artists Name</h1>
+        <img src={drake} width="90%"/>
+       </div>
       </div>
-      <div className="glow container">
-        <div className="text-container">
-          <span className="text">Song Name</span>
-          <br />
-          <span className="text">Artist</span>
-          <br />
-          <div className="playback_controls">
-            <button className="audioBut" onClick="skip('back')">
-              <i className="fa fa-fast-backward" />
-            </button>
-            {renderPlay()}
-            <button className="audioBut" onClick={stop}>
-              <i className="fa fa-stop" />
-            </button>
-            <button className="audioBut" onClick="skip('fwd')">
-              <i className="fa fa-fast-forward" />
-            </button>
-          </div>
-          <br />
-          <div id="seekbar">
-            <input type="range" oninput="f" id="seek" defaultValue={0} />
-          </div>
-          <br />
-          <div className="volume_controls">
+    </div>
+  );
+};
+
+export default MusicPlayer;
+
+          {/* <div className="volume_controls">
             <button className="audioBut" id="mute" onClick="mute()">
               <i className="fa fa-volume-up" />
             </button>
@@ -86,11 +98,9 @@ const MusicPlayer = (props) => {
               step="0.01"
               defaultValue={1}
             />
-          </div>
-        </div>
-      </div>
+          </div> */}
 
-      {/* playlist */}
+      {/* playlist
       <div className="play-list">
         <div className="container  ">
           <div className="row ">
@@ -112,9 +122,4 @@ const MusicPlayer = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export default MusicPlayer;
+      </div> */}
