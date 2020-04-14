@@ -198,7 +198,7 @@ const SlideMenu = (props) => {
   return(
     <div className = {drawerClasses}>
       <div className="uploader-title-main">
-        <img src={logo} height="100%"/> Account Uploads
+        <span>aMuse<img src={logo} height="50"/></span>Account Uploads
       </div>
       <div className="select-album-cover">
         <div className="select-album-title">

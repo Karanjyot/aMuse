@@ -11,11 +11,12 @@ import Backdrop from '../../components/Backdrop/Backdrop';
 
 const Profile = () =>{
     const [showMenu, setShowMenu] = useState(false);//controls the side menu
-    const [wantUpdate, setWantUpdate] = useState(false);//boolean to control update of general info
+    const [isUpdating, setIsUpdating] = useState(false);//boolean to control update of general info
     const [account, setAccount] = useState({});//the account object in its entirety
     const [id, setID] = useState(""); //this is the account id(primary key for 'Account' model)
     const [imgs, setImgs] = useState([]);//account image array
-
+    //user info
+    const [userEmail, setUserEmail] = useState("");
     //form states for when we update the general info
     const [name, setName] = useState("");
     const [genre, setGenre] = useState("");
@@ -27,7 +28,8 @@ const Profile = () =>{
     useEffect(()=> {
       axios.get(`/api/current_user/data`)
         .then(res=> {
-          console.log(res.data.account);
+          console.log(res.data);
+          setUserEmail(res.data.user.email);
           setAccount(res.data.account)
           setID(res.data.account._id);
           setName(res.data.account.artist_nickname);
@@ -38,6 +40,20 @@ const Profile = () =>{
           setImgs([...res.data.account.images])
         }).catch(err=> console.log(err));
     }, [showMenu,updateControl]);
+
+    //Controlling the opening and closing of the sideDrawer Menu
+    const updateControlHandler = ()=>{
+      setUpdateControl(!updateControl);
+    }
+    const toggleMenuHandler = () => {
+      setShowMenu(!showMenu);
+    };
+    const closeMenuHandler = () => {
+      setShowMenu(false);
+    };
+    const formUpdateToggle = ()=> {
+      setIsUpdating(!isUpdating);
+    }
     //Submiting updated values for the general info form
     const submitUpdateHandler = (e)=> {
       e.preventDefault();
@@ -51,37 +67,29 @@ const Profile = () =>{
       axios.post('/api/current_user/update/'+id, obj)
       .then(res => {
         console.log(res);
+        setIsUpdating(false);
+        updateControlHandler();
       }).catch(err=> {
         console.log(err);
       })
     }
-    //Controlling the opening and closing of the sideDrawer Menu
-    const updateControlHandler = ()=>{
-      setUpdateControl(!updateControl);
-    }
-    const toggleMenuHandler = () => {
-      setShowMenu(!showMenu);
-    };
-    const closeMenuHandler = () => {
-      setShowMenu(false);
-    };
+
     let backdrop;
     if (showMenu) {
       backdrop = <Backdrop clicked={closeMenuHandler} />;
     }
+    let updateInfoStyle = isUpdating ? 'general-info-active': 'general-info';
 return (
     <div id="profilePage">
     <div className="container" >
         <Header />
-        <ProfileDisplay usersAccount= {account} uploadMenu = {toggleMenuHandler} />
+        <ProfileDisplay userEmail={userEmail} userAccount= {account} showForm={formUpdateToggle} uploadMenu = {toggleMenuHandler} update={updateControlHandler}/>
         {/* THE DIV BELOW REQUIRES CONDITIONAL RENDERING */}
-        <div className="general-info">
+        <div className={updateInfoStyle}>
+          <button onClick={formUpdateToggle} id="btnClose" className="btn btn-link"><i class="fas fa-times"></i></button>
           <span>
             <h2>General Info</h2>
-            <a onClick={()=>setWantUpdate(!wantUpdate)}
-               className="float-right" href="">update</a>
           </span>
-          
           <form onSubmit={submitUpdateHandler} className="general-form">
             <input value={name} onChange={(e)=>setName(e.target.value)} type="text"  placeholder="Artistic name"/>
             <input value={genre} onChange={(e)=>setGenre(e.target.value)} type="text"  placeholder="Your genre(s)"/>
@@ -93,7 +101,7 @@ return (
         </div>
         <UserMusic />
         {backdrop}
-        <UploadMenu show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
+        <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
     </div>
     </div>
 )

@@ -10,7 +10,6 @@ const UserMusic = () =>{
           $("li").click(function () {
             $(this).addClass("active").siblings().removeClass("active");
             
-        
           });
         
         }, []);
@@ -46,28 +45,28 @@ const UserMusic = () =>{
       </div>
       {/* Pagination */}
       <nav aria-label="Page navigation example " className="page-padding">
-  <ul className="pagination pg-blue justify-content-center">
-    <li className="page-item ">
-      <a className="page-link" tabIndex={-1}>
-        Previous
-      </a>
-    </li>
-    <li className="page-item">
-      <a className="page-link">1</a>
-    </li>
-    <li className="page-item active">
-      <a className="page-link">
-        2 <span className="sr-only">(current)</span>
-      </a>
-    </li>
-    <li className="page-item">
-      <a className="page-link">3</a>
-    </li>
-    <li className="page-item ">
-      <a className="page-link">Next</a>
-    </li>
-  </ul>
-</nav>
+        <ul className="pagination pg-blue justify-content-center">
+          <li className="page-item ">
+            <a className="page-link" tabIndex={-1}>
+              Previous
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link">1</a>
+          </li>
+          <li className="page-item active">
+            <a className="page-link">
+              2 <span className="sr-only">(current)</span>
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link">3</a>
+          </li>
+          <li className="page-item ">
+            <a className="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
      
 
 </div>

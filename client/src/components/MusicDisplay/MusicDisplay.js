@@ -71,7 +71,7 @@ const MusicDisplay = (props) => {
   return (
     <div>
     <div className="jumbotron">
-      <h1 className="genre">Genre</h1>
+      <h1 className="genre">Songs Trending Today</h1>
       <div className="row">
         {/* Song 1 */}
         <div className="col">

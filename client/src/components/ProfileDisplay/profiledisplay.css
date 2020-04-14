@@ -1,5 +1,9 @@
 #profileJumbotron{
 padding-top: 0px;
+padding-bottom: 30px;
+background-color: whitesmoke;
+color: black;
+border-bottom: 3px double #266DD3;
 }
 
 .fb-profile img.fb-image-lg{
@@ -19,7 +23,7 @@ padding-top: 0px;
 @media (max-width:768px)
 {
     
-.fb-profile-text>h1{
+.fb-profile-text h1{
     font-weight: 700;
     font-size:16px;
 }
@@ -33,5 +37,23 @@ padding-top: 0px;
 }
 
 #imgBut{
-    background-color: DodgerBlue;
+    background-color:  #3DA5D9;
+    font-weight: 400;
+    padding-left: 1.5rem;
+    float: right;
+    
+}
+.profile-location{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: 100px;
+    margin-left: 3rem;
+}
+.update-link-profile{
+   color: #3DA5D9;
+   border:1px dotted whitesmoke;
+   font-weight: 400;
+   font-size: 14px;
+   
 }

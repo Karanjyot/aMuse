@@ -96,6 +96,7 @@ app.get('/api/current_user/data', isAuthenticated, (req, res)=> {
         .then(account=> {
             res.json({
                 msg: 'Found users account',
+                user: req.user,
                 account
             });
         }).catch(err=> {console.log(err)});
