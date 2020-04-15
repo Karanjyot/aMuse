@@ -93,8 +93,11 @@ return (
             <h2>General Info</h2>
           </span>
           <div className="row profile-forms-row">
-            <div className="col-md-4  d-flex flex-column align-items-between">
-              <h2>Change Profile Picture</h2> 
+            <div className="col-md-4  d-flex flex-column justify-content-start align-items-center">
+              <button className="btn btn-secondary">Select Profile Picture</button>
+              <div className="image-box">
+
+              </div>
             </div >
             <div className="col-md-8 d-flex flex-column align-items-center justify-content-between">
               <form onSubmit={submitUpdateHandler} className="general-form">
