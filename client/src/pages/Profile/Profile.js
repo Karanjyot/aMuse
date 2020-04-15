@@ -3,7 +3,7 @@ import "./profile.css"
 import axios from 'axios';
 import ProfileDisplay from "../../components/ProfileDisplay/ProfileDisplay"
 import Header from "../../components/Header/Header"
-import UserMusic from "../../components/UserMusic/UserMusic"
+import firebase from 'firebase'
 import UploadMenu from '../../components/SlideMenu/SlideMenu'
 import Backdrop from '../../components/Backdrop/Backdrop';
 
@@ -23,6 +23,7 @@ const Profile = () =>{
     const [desc, setDesc] = useState("");
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
+ 
     const [updateControl, setUpdateControl] = useState(false);
     //finding the account of the active user
     useEffect(()=> {
@@ -62,7 +63,8 @@ const Profile = () =>{
         genre, 
         desc,
         country, 
-        city
+        city,
+      
       }
       axios.post('/api/current_user/update/'+id, obj)
       .then(res => {
@@ -73,7 +75,7 @@ const Profile = () =>{
         console.log(err);
       })
     }
-
+   
     let backdrop;
     if (showMenu) {
       backdrop = <Backdrop clicked={closeMenuHandler} />;
@@ -90,16 +92,22 @@ return (
           <span>
             <h2>General Info</h2>
           </span>
-          <form onSubmit={submitUpdateHandler} className="general-form">
-            <input value={name} onChange={(e)=>setName(e.target.value)} type="text"  placeholder="Artistic name"/>
-            <input value={genre} onChange={(e)=>setGenre(e.target.value)} type="text"  placeholder="Your genre(s)"/>
-            <input value={desc} onChange={(e)=>setDesc(e.target.value)} type="text"  placeholder="Describe yourself" />
-            <input value={country} onChange={(e)=>setCountry(e.target.value)} type="text"  placeholder="Your country"/>
-            <input value={city} onChange={(e)=>setCity(e.target.value)} type="text"  placeholder="Your city"/>
-            <button className="btn btn-primary btn-sm">Update Info</button>
-          </form>
+          <div className="row profile-forms-row">
+            <div className="col-md-4  d-flex flex-column align-items-between">
+              <h2>Change Profile Picture</h2> 
+            </div >
+            <div className="col-md-8 d-flex flex-column align-items-center justify-content-between">
+              <form onSubmit={submitUpdateHandler} className="general-form">
+                <input value={name} onChange={(e)=>setName(e.target.value)} type="text"  placeholder="Artistic name"/>
+                <input value={genre} onChange={(e)=>setGenre(e.target.value)} type="text"  placeholder="Your genre(s)"/>
+                <input value={desc} onChange={(e)=>setDesc(e.target.value)} type="text"  placeholder="Describe yourself" />
+                <input value={country} onChange={(e)=>setCountry(e.target.value)} type="text"  placeholder="Your country"/>
+                <input value={city} onChange={(e)=>setCity(e.target.value)} type="text"  placeholder="Your city"/>
+                <button className="btn btn-primary btn-sm">Update Info</button>
+              </form>
+            </div>
+          </div>
         </div>
-        <UserMusic />
         {backdrop}
         <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
     </div>

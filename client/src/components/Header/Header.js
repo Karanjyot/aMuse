@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React from "react";
+
 import "./header.css";
 import {Link} from 'react-router-dom';
 
 const Header = (props) => {
-  // let history = useHistory();
 
-  // const logout = ()=>{
-
-  //     axios.get("/api/logout").then(res=>{
-  //         console.log(res);
-  //     })
-
-  //     // history.push('/login');
-  // }
 
   return (
     <div>

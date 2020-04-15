@@ -216,7 +216,7 @@ const SlideMenu = (props) => {
           <img className="mt-4"  src={photo} width="auto" height="50" />
           <form onSubmit={uploadFileHandler}>  
             <div className="form-group">
-              <label>Upload New Album Cover</label>
+              <label>Upload New Image</label>
               <input onChange={handleImgChange} type="file" className="form-control-file" />
             </div>
             <button type="submit" className="btn btn-primary btn-sm">Upload</button>

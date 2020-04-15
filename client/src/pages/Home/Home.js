@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import axios from "axios";
 import Carousel from "../../components/Carousel/Carousel";
 import MusicDisplay from "../../components/MusicDisplay/MusicDisplay";
+import TrendingArtists from "../../components/TrendingArtists/TrendingArtists";
 
 const Home = () => {
   const [accounts, setAccounts] = useState([]);
@@ -25,6 +26,7 @@ const Home = () => {
       <div className="container">
         <Carousel />
         <MusicDisplay />
+        <TrendingArtists />
       </div>
     </div>
   );

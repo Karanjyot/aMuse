@@ -109,7 +109,8 @@ app.post('/api/current_user/update/:id', isAuthenticated,(req, res)=> {
         genre: req.body.genre,
         description:  req.body.desc,
         country:  req.body.country, 
-        city: req.body.city
+        city: req.body.city,
+        profilePicture: req.body.profilePicture
     }
     Account.findByIdAndUpdate(req.params.id, updateObj)
     .then(value=> {

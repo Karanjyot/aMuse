@@ -28,9 +28,10 @@
     box-shadow: 1px 1px 3px 3px silver;
     /* border-top: 3px double #266DD3; */
     border-bottom: 3px double #266DD3;
+    border-top: 3px double #FF6700;
 }
 .general-form{
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,4 +47,12 @@
     font-weight: 600;
     display: flex;
     align-self: flex-end;
+}
+
+.profile-forms-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

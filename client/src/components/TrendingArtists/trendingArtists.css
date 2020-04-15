@@ -1,0 +1,157 @@
+.trnding-artists-main{
+    background: rgb(255,216,189);
+    background: linear-gradient(0deg, rgba(255,216,189,1) 0%, rgba(185,185,185,1) 100%);
+    padding: 1.5rem;
+    box-shadow: 1px 1px 3px 2px lightgrey;
+    /* border-top: 3px double #266DD3; */
+    border-top: 3px double #FF6700;
+  
+
+}
+.trending-artist-link{
+    text-transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.trending-artist-title{
+    width: 100%;
+    font-size: 2.5rem;
+    color:rgb(82, 82, 82);
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px dotted rgb(82, 82, 82);
+}
+
+/* .account-card-main{
+    position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+    background-color: #34495e;
+    
+} */
+.account-card-main a{
+    text-decoration: none;
+}
+.account-figure{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 16rem;
+    height: 22rem;
+    padding: 1rem 1rem;
+    background-image: url("https://images.unsplash.com/photo-1565804970157-19c1ade2403f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+  
+}
+.account-figure:before, .account-figure:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .account-figure:before {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 0;
+  }
+  .account-figure:after {
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+  }
+  .account-figure:hover {
+    background-size: 175%;
+  }
+  .account-figure:hover:after {
+    /* ♬♪ */
+    content: 'view     ♬';
+    background: rgb(38,109,211, 0.5);
+    background: linear-gradient(349deg, rgba(38,109,211,0.9) 49%, rgba(61,165,217,0.9) 49%);
+    color: rgba(255, 102, 0, 0.855);
+    font-size: 5rem;
+    z-index: 2;
+    cursor: pointer;
+    font-weight: 200;
+    font-family: 'Supermercado One', cursive;
+  }
+  .account-figure:hover .date {
+    bottom: -59px;
+  }
+  .account-figure:hover figcaption {
+    transform: translateY(-110%);
+  }
+  figure .date {
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.7rem;
+    background-color: rgb(255, 103, 0, 0.8);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+   .account-figure .date span {
+    color: white;
+    line-height: 1;
+  }
+   .account-figure .date span:first-child {
+    font-family: "Source Code Pro", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+   .account-figure .date span:last-child {
+    font-size: 14px;
+    font-weight: 300;
+  }
+   .account-figure figcaption {
+    color: white;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+    font-weight: 300;
+ 
+  }
+   .account-figure figcaption h4 {
+    margin: 0 0 5px;
+    font-family: "Source Code Pro", sans-serif;
+    font-size: 24px;
+    line-height: 1.35;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+    background-color: rgb(255, 103, 0, 0.9);
+  }
+   .account-figure figcaption h4 > span {
+    color:whitesmoke;
+  }
+   .account-figure figcaption p {
+    margin: 0;
+    line-height: 1.7;
+    color: whitesmoke;
+    background-color: rgb(10, 10, 10, 0.6);
+    width: 100%;
+    height: 8rem;
+    overflow-y: hidden;
+    font-size: 14px;
+  }
+  .account-card-userImg{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
