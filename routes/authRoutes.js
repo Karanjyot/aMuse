@@ -96,6 +96,7 @@ app.get('/api/current_user/data', isAuthenticated, (req, res)=> {
         .then(account=> {
             res.json({
                 msg: 'Found users account',
+                user: req.user,
                 account
             });
         }).catch(err=> {console.log(err)});
@@ -108,7 +109,8 @@ app.post('/api/current_user/update/:id', isAuthenticated,(req, res)=> {
         genre: req.body.genre,
         description:  req.body.desc,
         country:  req.body.country, 
-        city: req.body.city
+        city: req.body.city,
+        profilePicture: req.body.profilePicture
     }
     Account.findByIdAndUpdate(req.params.id, updateObj)
     .then(value=> {
@@ -163,9 +165,25 @@ app.post('/api/current_user/upload_song/:id', isAuthenticated, (req, res)=>{
         }).catch(err=> res.json({
             msg: 'Account not found',
             error: err
-        }))
-})
+        }));
+});
 
+//Route that identifies a user based off accountID 
+app.get('/api/findUser/:accId', isAuthenticated, (req, res)=> {
+    Account.findById(req.params.accId)
+        .then(acc=> {
+            res.json({
+                msg: "Users Account found successfuly",
+                accountInfo: acc,
+                currentUser: req.user
+            })
+        }).catch(err=> {
+            res.json({
+                msg: "Error: Could not find account::"+ err.message,
+                error: err
+            });
+        });
+});
 
 // retrieve all songs
 

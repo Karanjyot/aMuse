@@ -144,7 +144,7 @@ const SlideMenu = (props) => {
   let userPhotos = <div className="usrPhoto">
                       <img src={defaultAlbum} height="80px"/>
                       <p>You have not uploaded any photos.</p>
-                      <p>A default image will be used for your album cover <span >or upload an album cover below</span></p>
+                      <p>A default image will be used <span >upload personal photos, album covers and music below</span></p>
                   </div>
     if(props.accountImages.length > 0 && imgURL === ""){
  
@@ -198,7 +198,7 @@ const SlideMenu = (props) => {
   return(
     <div className = {drawerClasses}>
       <div className="uploader-title-main">
-        <img src={logo} height="100%"/> Account Uploads
+        <span>aMuse<img src={logo} height="50"/></span>Account Uploads
       </div>
       <div className="select-album-cover">
         <div className="select-album-title">
@@ -216,7 +216,7 @@ const SlideMenu = (props) => {
           <img className="mt-4"  src={photo} width="auto" height="50" />
           <form onSubmit={uploadFileHandler}>  
             <div className="form-group">
-              <label>Upload New Album Cover</label>
+              <label>Upload New Image</label>
               <input onChange={handleImgChange} type="file" className="form-control-file" />
             </div>
             <button type="submit" className="btn btn-primary btn-sm">Upload</button>
