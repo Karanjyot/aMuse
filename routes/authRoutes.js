@@ -165,9 +165,25 @@ app.post('/api/current_user/upload_song/:id', isAuthenticated, (req, res)=>{
         }).catch(err=> res.json({
             msg: 'Account not found',
             error: err
-        }))
-})
+        }));
+});
 
+//Route that identifies a user based off accountID 
+app.get('/api/findUser/:accId', isAuthenticated, (req, res)=> {
+    Account.findById(req.params.accId)
+        .then(acc=> {
+            res.json({
+                msg: "Users Account found successfuly",
+                accountInfo: acc,
+                currentUser: req.user
+            })
+        }).catch(err=> {
+            res.json({
+                msg: "Error: Could not find account::"+ err.message,
+                error: err
+            });
+        });
+});
 
 
 

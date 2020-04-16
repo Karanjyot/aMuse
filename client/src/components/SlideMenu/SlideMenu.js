@@ -144,7 +144,7 @@ const SlideMenu = (props) => {
   let userPhotos = <div className="usrPhoto">
                       <img src={defaultAlbum} height="80px"/>
                       <p>You have not uploaded any photos.</p>
-                      <p>A default image will be used for your album cover <span >or upload an album cover below</span></p>
+                      <p>A default image will be used <span >upload personal photos, album covers and music below</span></p>
                   </div>
     if(props.accountImages.length > 0 && imgURL === ""){
  

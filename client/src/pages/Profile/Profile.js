@@ -15,6 +15,8 @@ const Profile = () =>{
     const [account, setAccount] = useState({});//the account object in its entirety
     const [id, setID] = useState(""); //this is the account id(primary key for 'Account' model)
     const [imgs, setImgs] = useState([]);//account image array
+    const [updateProfile, setUpdateProfile] = useState(false);
+    const [avatar, setAvatar] = useState("");
     //user info
     const [userEmail, setUserEmail] = useState("");
     //form states for when we update the general info
@@ -39,6 +41,7 @@ const Profile = () =>{
           setCountry(res.data.account.country);
           setCity(res.data.account.city);
           setImgs([...res.data.account.images])
+          setAvatar(res.data.account.profilePicture);
         }).catch(err=> console.log(err));
     }, [showMenu,updateControl]);
 
@@ -64,6 +67,7 @@ const Profile = () =>{
         desc,
         country, 
         city,
+        profilePicture: avatar
       
       }
       axios.post('/api/current_user/update/'+id, obj)
@@ -73,6 +77,42 @@ const Profile = () =>{
         updateControlHandler();
       }).catch(err=> {
         console.log(err);
+      })
+    }
+    const submitAvatarChange = (picture)=> {
+     const updateObj = {
+      name,
+      genre, 
+      desc,
+      country, 
+      city,
+      profilePicture: picture
+     }
+     axios.post('/api/current_user/update/'+id, updateObj)
+     .then(res => {
+       console.log(res);
+       setIsUpdating(false);
+       setUpdateProfile(false);
+       updateControlHandler();
+     }).catch(err=> {
+       console.log(err);
+     })
+    }
+    let selectProfile = null;
+    let selectProfileSectionStyle= "";
+    if(updateProfile){
+      selectProfileSectionStyle = "image-box";
+      selectProfile = imgs.map(img=> {
+        return (
+          <div className="each-profile-select" key={img._id}>
+            <img className="border" src={img.downloadURL}  width="100%"/>
+            <button onClick={()=> submitAvatarChange(img.downloadURL)}
+             className="btn btn-link-secondary p-0 m-0">
+              
+              <i className="fas fa-2x fa-user-check"/>
+            </button>
+          </div>
+        )
       })
     }
    
@@ -94,9 +134,10 @@ return (
           </span>
           <div className="row profile-forms-row">
             <div className="col-md-4  d-flex flex-column justify-content-start align-items-center">
-              <button className="btn btn-secondary">Select Profile Picture</button>
-              <div className="image-box">
-
+              <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-secondary">Select Profile Picture</button>
+              <div className={selectProfileSectionStyle}>
+                {selectProfile}
+                
               </div>
             </div >
             <div className="col-md-8 d-flex flex-column align-items-center justify-content-between">

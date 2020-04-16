@@ -17,6 +17,8 @@ border-bottom: 3px double #266DD3;
     margin: -90px 10px 0px 50px;
     z-index: 9;
     width: 20%;
+    height: 13rem;
+    object-fit: contain;
 
 }
 

@@ -10,7 +10,7 @@ import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
 import AudioPlayer from "./pages/AudioPlayer/AudioPlayer"
 import NoMatch from "./pages/NoMatch/NoMatch"
-
+import AccountView from './pages/AccountView/AccountView'
 
 const App = () =>{
         return (
@@ -22,8 +22,7 @@ const App = () =>{
                     <Route path ="/home" component ={Home} />  
                     <Route path ="/profile" component ={Profile} />  
                     <Route path ="/audioplayer" component ={AudioPlayer} /> 
-
-
+                    <Route path ="/view-account/:id" component={AccountView} />
                     {/* Must be last */}
                     <Route path="*" component={NoMatch} />
                 </Switch>
