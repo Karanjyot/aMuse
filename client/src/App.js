@@ -10,27 +10,27 @@ import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
 import AudioPlayer from "./pages/AudioPlayer/AudioPlayer"
 import NoMatch from "./pages/NoMatch/NoMatch"
-import AccountView from './pages/AccountView/AccountView'
+import AccountView from "./pages/AccountView/AccountView"
 
 const App = () =>{
         return (
             <div>
                 <BrowserRouter >
-                <Switch>
+                    <Switch>
                     <Route exact path = "/" component = {Signup} />
-                    <Route path = "/login" component = {Login} />
-                    <Route path ="/home" component ={Home} />  
-                    <Route path ="/profile" component ={Profile} />  
-                    <Route path ="/audioplayer" component ={AudioPlayer} /> 
-                    <Route path ="/view-account/:id" component={AccountView} />
-                    {/* Must be last */}
-                    <Route path="*" component={NoMatch} />
-                </Switch>
+                        <Route path = "/login" component = {Login} />
+                        <Route path ="/home" component ={Home} />  
+                        <Route path ="/profile" component ={Profile} />  
+                        <Route path ="/audioplayer" component ={AudioPlayer} /> 
+                        <Route path ="/view-account/:id" component ={AccountView} /> 
 
+                        <Route path="*" component={NoMatch} />
+                    </Switch>
                 </BrowserRouter>
             </div   >
         ) 
 };
 
 export default App;
+
 
