@@ -58,7 +58,7 @@ const Signup = (props) =>{
 
 <div>
 <div className="signup-form">
- <form onSubmit ={submitFormHandler}>
+ <form  onSubmit ={submitFormHandler}>
     <h2>Create an Account</h2>
     <p className="hint-text">Sign up with your social media account or email address</p>
     <div className="social-btn text-center">
@@ -66,10 +66,10 @@ const Signup = (props) =>{
     </div>
     <div className="or-seperator"><b>or</b></div>
     <div className="form-group">
-      <input onChange={(e)=>{setEmail(e.target.value)}}name="email" placeholder="E-mail" type="email" className="form-control input-lg" required="required" />
+      <input onChange={(e)=>{setEmail(e.target.value)}}name="email" placeholder="E-mail" type="email" className="form-control form-signup input-lg" required="required" />
     </div>
     <div className="form-group">
-      <input onChange={(e)=>{setPassword(e.target.value)}} type="password" className="form-control input-lg" name="password" placeholder="Password" required="required" />
+      <input onChange={(e)=>{setPassword(e.target.value)}} type="password" className="form-control form-signup input-lg" name="password" placeholder="Password" required="required" />
     </div> 
     <div className="form-group">
       <button type="submit" className="btn btn-success btn-lg btn-block signup-btn">Sign Up</button>

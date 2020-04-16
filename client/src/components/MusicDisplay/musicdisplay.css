@@ -44,10 +44,21 @@ opacity: .5;
   }
 
   .jb{
-    height: 500px!important;
+    height: 450px!important;
     overflow: auto;
 }
 
 .jb::-webkit-scrollbar { width: 0 !important }
 .jb { overflow: -moz-scrollbars-none; }
 .jb { -ms-overflow-style: none; }
+
+.album-img {
+  width: 100%;
+  height: 7vw;
+  object-fit: cover;
+}
+
+.jbSearch {
+
+  align-content: center;
+}

@@ -2,20 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./header.css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Search from "../../components/Search/search"
 
 const Header = (props) => {
-  // let history = useHistory();
 
-  // const logout = ()=>{
-
-  //     axios.get("/api/logout").then(res=>{
-  //         console.log(res);
-  //     })
-
-  //     // history.push('/login');
-  // }
-
+ 
   return (
     <div>
       {/*Navbar */}
@@ -56,22 +48,10 @@ const Header = (props) => {
                 </a>
               </li>
             </ul>
-            <form className="form-inline my-1">
-              <div className="md-form form-sm my-0">
-                <input
-                  className="form-control form-control-sm mr-sm-2 mb-0"
-                  type="text"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-              </div>
-              <button
-                className="btn btn-outline-white btn-sm my-0"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
+   
+            <div>
+              <Search />
+            </div>
 
             <ul className="navbar-nav ml-auto nav-flex-icons">
               <li className="nav-item">
@@ -111,5 +91,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-
