@@ -36,7 +36,7 @@ const Search = () => {
           />
           <datalist id="browsers">
             {filteredSong.map((song) => {
-              return <option value={song.name}></option>;
+              return <option key={song._id}value={song.name}></option>;
             })}
           </datalist>
         </div>

@@ -134,7 +134,7 @@ const MusicDisplay = (props) => {
         <h1 className="genre">Explore</h1>
 
         <div className="container">
-          <div class="active-pink-3 active-pink-4">
+          <div className="active-pink-3 active-pink-4">
             <input
               className="form-control"
               id="listSearch"
