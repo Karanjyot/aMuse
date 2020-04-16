@@ -21,6 +21,10 @@ const AccountSchema = new mongoose.Schema({
         type: String, 
         default: ""
     },
+    profilePicture: {
+        type: String, 
+        default: ""
+    },
     userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users'  

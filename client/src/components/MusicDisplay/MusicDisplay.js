@@ -1,4 +1,7 @@
+
 import React, { useState, useEffect } from "react";
+
+
 import $ from "jquery";
 import "./musicdisplay.css";
 import "slick-carousel/slick/slick.css";
@@ -130,6 +133,7 @@ const MusicDisplay = (props) => {
 
   return (
     <div>
+
       <div className="App jumbotron">
         <h1 className="genre">Explore</h1>
 
@@ -140,6 +144,7 @@ const MusicDisplay = (props) => {
               id="listSearch"
               type="text"
               placeholder="Search for a song"
+
             />
             <br />
             <div className="jb">
