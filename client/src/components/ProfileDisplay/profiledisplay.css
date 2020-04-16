@@ -53,6 +53,13 @@ border-bottom: 3px double #266DD3;
     min-width: 100px;
     margin-left: 3rem;
 }
+.profile-location-view{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: 100px;
+    margin-left: 3.5rem;
+}
 .update-link-profile{
    color: #3DA5D9;
    border:1px dotted whitesmoke;
