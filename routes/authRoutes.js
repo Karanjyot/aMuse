@@ -170,7 +170,7 @@ app.post('/api/current_user/upload_song/:id', isAuthenticated, (req, res)=>{
 
 //Route that identifies a user based off accountID 
 app.get('/api/findUser/:accId', isAuthenticated, (req, res)=> {
-    Account.findById(req.params.accId)
+    Account.findById(req.params.accId).populate('images').populate('songs')
         .then(acc=> {
             res.json({
                 msg: "Users Account found successfuly",
@@ -191,7 +191,7 @@ app.get('/api/songs', isAuthenticated, (req,res)=>{
 
     Song.find({}).then(songs =>{
         res.json({songs:songs})
-    })
+    }).catch(err=> res.json(err));
 })
 
 

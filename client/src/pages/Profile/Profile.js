@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import "./profile.css"
-import axios from 'axios';
+import axios from 'axios'
 import ProfileDisplay from "../../components/ProfileDisplay/ProfileDisplay"
 import Header from "../../components/Header/Header"
 import UploadMenu from '../../components/SlideMenu/SlideMenu'
-import Backdrop from '../../components/Backdrop/Backdrop';
+import Backdrop from '../../components/Backdrop/Backdrop'
+
 
 
 
@@ -158,6 +159,7 @@ return (
         </div>
         {backdrop}
         <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
+     
     </div>
     </div>
 )

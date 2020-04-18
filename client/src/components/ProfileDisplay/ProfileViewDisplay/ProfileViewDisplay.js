@@ -20,7 +20,7 @@ const ProfileViewDisplay = (props) => {
    }
   return(
   
-    <div class ="jumbotron" id="profileJumbotron">
+    <div className ="jumbotron" id="profileJumbotron">
         <div className="container">
           <div className="fb-profile">
             <img align="left" className="fb-image-lg" src={require("../../../images/profilebackground.jpg")} alt="Profile image banner" />
@@ -30,7 +30,7 @@ const ProfileViewDisplay = (props) => {
              <p>{description}</p>
               <div className="profile-location-view">
                 <i className="fas fa-map-marker-alt mr-2"/>
-                <p >{location}</p> 
+                {location}
               </div>
        
               <button className="float-right">Message {nameDisplay}</button>
