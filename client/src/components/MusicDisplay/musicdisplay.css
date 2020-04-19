@@ -70,12 +70,13 @@ opacity: .5;
 #music-display-view{
   width: 100%;
   min-height: 20rem;
-  background: whitesmoke;
   border-top: linen;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
+  margin-left:2px;
+  color: rgb(97, 97, 97)
 }
 .tunes-by-user{
   width: 100%;
@@ -85,26 +86,31 @@ opacity: .5;
   border-top: 2px dotted #266DD3;
   border-bottom: 2px dotted #266DD3;
   color:#0D3B66;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 13px;
+
+  font-family:'Press Start 2P', cursive;
 }
 #photos {
   /* Prevent vertical gaps */
   line-height: 0;
-background: whitesmoke;
-   
+  background: lavender;
+   padding: 1rem;
   -webkit-column-count: 2;
-  -webkit-column-gap:   5px;
+  -webkit-column-gap:   3px;
   -moz-column-count:    2;
-  -moz-column-gap:      5px;
+  -moz-column-gap:      3px;
   column-count:         2;
-  column-gap:           5px;  
+  column-gap:           3px;
+   
 }
 
 #photos img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: auto !important;
+  box-shadow: 1px 1px 2px darkgray;
+  padding: 2px;
+  background: white;
 }
 @media (max-width: 1200px) {
   #photos {
@@ -133,4 +139,19 @@ background: whitesmoke;
   -webkit-column-count: 1;
   column-count:         1;
   }
+}
+
+.tunes-byuser-songname{
+  cursor: pointer;
+}
+
+.tunes-byuser-songname:hover{
+  color: #266DD3;
+}
+
+.tunes-by-namedisplay{
+  color: #266DD3;
+  letter-spacing: 2px;
+  margin-left: 1rem;
+  font-weight: 500;
 }

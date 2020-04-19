@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./musicplayer.css";
 
+
 import axios from "axios"
 
 
@@ -52,8 +53,8 @@ const MusicPlayer = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row mt-4">
+    <div className="container ">
+      <div className="row mt-4 d-flex flex-row justify-content-between">
         <div className="col-md-6 d-flex flex-column align-items-center justify-content-center">
           <audio ref={player}>
             <source src={require("./Nas.mp3")} type="audio/mpeg"></source>
@@ -81,9 +82,10 @@ const MusicPlayer = (props) => {
               <br />
           </div>
         </div>
+        <i className="fas fa-2x fa-heart song-page-like"> 4</i>      
        </div>
-       <div className="col-md-5 d-flex flex-column align-items-center justify-content-around">
-         <h1>Artists Name</h1>
+       <div className="col-md-5 d-flex flex-column align-items-center justify-content-around music-player-main">
+        <h2>Author</h2>
         <img src={drake} width="90%"/>
        </div>
       </div>

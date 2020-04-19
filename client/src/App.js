@@ -17,13 +17,13 @@ const App = () =>{
             <div>
                 <BrowserRouter >
                     <Switch>
-                    <Route exact path = "/" component = {Signup} />
+                        <Route exact path = "/" component = {Signup} />
                         <Route path = "/login" component = {Login} />
                         <Route path ="/home" component ={Home} />  
                         <Route path ="/profile" component ={Profile} />  
                         <Route path ="/audioplayer" component ={AudioPlayer} /> 
-                        <Route path ="/view-account/:id" component ={AccountView} /> 
-
+                        <Route exact path ="/view-account/:id" component ={AccountView} /> 
+                        <Route path ="/view-song/:id" component ={AudioPlayer} />
                         <Route path="*" component={NoMatch} />
                     </Switch>
                 </BrowserRouter>
