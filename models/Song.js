@@ -12,16 +12,16 @@ const SongSchema = new mongoose.Schema({
         type: String, 
         required: false,
     },
-    // comments: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: `Comment`
-    //     }
-    // ],
-    // likes: {
-    //     type: Number, 
-    //     default: 0
-    // },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: `Comment`
+        }
+    ],
+    likes: {
+        type: Number, 
+        default: 0
+    },
     authorID:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'  
