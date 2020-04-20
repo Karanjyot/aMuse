@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import axios from 'axios'
+import './accountView.css'
 import Header from '../../components/Header/Header'
-import ProfileDisplay from '../../components/ProfileDisplay/ProfileDisplay'
+import ProfileViewDisplay from '../../components/ProfileDisplay/ProfileViewDisplay/ProfileViewDisplay'
+import MusicDisplayView from '../../components/MusicDisplay/MusicDisplayView/MusicDisplayView'
 /**
 * @author
 * @function AccountView
@@ -20,9 +22,14 @@ const AccountView = (props) => {
             }).catch(err=> console.log(err))
     }, [])
   return(
-    <div>
+    <div id="account-view">
         <Header />
-        <ProfileDisplay userAccount = {selectedAccount} />
+        <div className="container">
+            <ProfileViewDisplay userAccount = {selectedAccount} />
+            <MusicDisplayView userAccount = {selectedAccount} />
+        </div>
+
+        
 
     </div>
    )

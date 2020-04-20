@@ -28,17 +28,29 @@
             -ms-flex-pack: center;
                 justify-content: center;
     } */
+	.song-page-like{
+		color: rgb(185, 21, 21);
+		align-self: flex-start;
+		border-top: 1px solid rgb(185, 21, 21);
+		padding: 0.5rem;
+		cursor: pointer;
 
+	}
+	.song-page-like:hover{
+		color: rgb(119, 14, 14)
 
+	}
+	.music-player-main{
+		background: rgb(24, 23, 20);
+		border-top: 4px solid white;
+		border-left: 4px solid white;
+		color: silver;
+	}
     .glow {
 	position: relative;
-	width: 200px;
-	height: 200px;
-	background: -webkit-gradient(linear,left bottom, left top,from(#000000),to(#262626));
-	background: -webkit-linear-gradient(bottom,#000000,#262626);
-	background: -moz-linear-gradient(bottom,#000000,#262626);
-	background: -o-linear-gradient(bottom,#000000,#262626);
-	background: linear-gradient(0deg,#000000,#262626);
+	width: 250px;
+	height: 250px;
+	background: linear-gradient(0deg,black,#585858);
 	-webkit-border-radius: 50%;
 	   -moz-border-radius: 50%;
 	        border-radius: 50%;
@@ -56,23 +68,23 @@
 	   -moz-background-size: 400%;
 	     -o-background-size: 400%;
 	        background-size: 400%;
-	max-width: -webkit-calc(200px + 4px);
-	max-width: -moz-calc(200px + 4px);
-	max-width: calc(200px + 4px);
-	max-height: -webkit-calc(200px + 4px);
-	max-height: -moz-calc(200px + 4px);
-	max-height: calc(200px + 4px);
-	width: -webkit-calc(200px + 4px);
-	width: -moz-calc(200px + 4px);
-	width: calc(200px + 4px);
-	height: -webkit-calc(200px + 4px);
-	height: -moz-calc(200px + 4px);
-	height: calc(200px + 4px);
+	max-width: -webkit-calc(250px + 4px);
+	max-width: -moz-calc(250px + 4px);
+	max-width: calc(250px + 4px);
+	max-height: -webkit-calc(250px + 4px);
+	max-height: -moz-calc(250px + 4px);
+	max-height: calc(250px + 4px);
+	width: -webkit-calc(250px + 4px);
+	width: -moz-calc(250px + 4px);
+	width: calc(250px + 4px);
+	height: -webkit-calc(250px + 4px);
+	height: -moz-calc(250px + 4px);
+	height: calc(250px + 4px);
 	z-index: -1;
-	-webkit-animation: animate 40s linear infinite;
-	   -moz-animation: animate 40s linear infinite;
-	     -o-animation: animate 40s linear infinite;
-	        animation: animate 40s linear infinite;
+	-webkit-animation: animate 15s linear infinite;
+	   -moz-animation: animate 15s linear infinite;
+	     -o-animation: animate 15s linear infinite;
+	        animation: animate 15s linear infinite;
 	-webkit-border-radius: 50%;
 	   -moz-border-radius: 50%;
 	        border-radius: 50%;
@@ -140,7 +152,7 @@ input::-webkit-slider-thumb {
 }
 #seek {
 	display: block;
-	width: 155px;
+	width: 200px;
 }
 @-webkit-keyframes animate {
 	0% {
@@ -187,7 +199,7 @@ input::-webkit-slider-thumb {
 	}
 }
 
-  .image-parent {
+  /* .image-parent {
     max-width: 40px;
     padding-right: 20px;
   }
@@ -200,4 +212,4 @@ input::-webkit-slider-thumb {
   .play-listitem{
       
     margin-left:auto; margin-right:0;
-  }
+  } */

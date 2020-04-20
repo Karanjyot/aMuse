@@ -64,3 +64,94 @@ opacity: .5;
 
   align-content: center;
 }
+
+/* This is styling for music display when the users account is viewed */
+
+#music-display-view{
+  width: 100%;
+  min-height: 20rem;
+  border-top: linen;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  margin-left:2px;
+  color: rgb(97, 97, 97)
+}
+.tunes-by-user{
+  width: 100%;
+  padding: 0.4rem;
+  background-color: white;
+  border-left: 4px solid #ff6700;
+  border-top: 2px dotted #266DD3;
+  border-bottom: 2px dotted #266DD3;
+  color:#0D3B66;
+  font-size: 13px;
+
+  font-family:'Press Start 2P', cursive;
+}
+#photos {
+  /* Prevent vertical gaps */
+  line-height: 0;
+  background: lavender;
+   padding: 1rem;
+  -webkit-column-count: 2;
+  -webkit-column-gap:   3px;
+  -moz-column-count:    2;
+  -moz-column-gap:      3px;
+  column-count:         2;
+  column-gap:           3px;
+   
+}
+
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+  box-shadow: 1px 1px 2px darkgray;
+  padding: 2px;
+  background: white;
+}
+@media (max-width: 1200px) {
+  #photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 1000px) {
+  #photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 800px) {
+  #photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  #photos {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
+
+.tunes-byuser-songname{
+  cursor: pointer;
+}
+
+.tunes-byuser-songname:hover{
+  color: #266DD3;
+}
+
+.tunes-by-namedisplay{
+  color: #266DD3;
+  letter-spacing: 2px;
+  margin-left: 1rem;
+  font-weight: 500;
+}

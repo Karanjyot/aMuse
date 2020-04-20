@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import "./profile.css"
-import axios from 'axios';
+import axios from 'axios'
 import ProfileDisplay from "../../components/ProfileDisplay/ProfileDisplay"
 import Header from "../../components/Header/Header"
-import firebase from 'firebase'
 import UploadMenu from '../../components/SlideMenu/SlideMenu'
-import Backdrop from '../../components/Backdrop/Backdrop';
+import Backdrop from '../../components/Backdrop/Backdrop'
+
 
 
 
@@ -102,18 +102,23 @@ const Profile = () =>{
     let selectProfileSectionStyle= "";
     if(updateProfile){
       selectProfileSectionStyle = "image-box";
-      selectProfile = imgs.map(img=> {
-        return (
-          <div className="each-profile-select" key={img._id}>
-            <img className="border" src={img.downloadURL}  width="100%"/>
-            <button onClick={()=> submitAvatarChange(img.downloadURL)}
-             className="btn btn-link-secondary p-0 m-0">
-              
-              <i className="fas fa-2x fa-user-check"/>
-            </button>
-          </div>
-        )
-      })
+      if(imgs.length === 0){
+        selectProfile = <p>No photos to select from. Upload photo first</p>
+      }else{
+        selectProfile = imgs.map(img=> {
+          return (
+            <div className="each-profile-select" key={img._id}>
+              <img className="border" src={img.downloadURL}  width="100%"/>
+              <button onClick={()=> submitAvatarChange(img.downloadURL)}
+               className="btn btn-link-secondary p-0 m-0">
+                
+                <i className="fas fa-2x fa-user-check"/>
+              </button>
+            </div>
+          )
+        });
+      }
+
     }
    
     let backdrop;
@@ -154,6 +159,7 @@ return (
         </div>
         {backdrop}
         <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
+     
     </div>
     </div>
 )

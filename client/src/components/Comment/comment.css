@@ -1,0 +1,54 @@
+.comment-section{
+    width: 98%;
+    height: 30rem;
+    overflow-y: scroll;
+    background: rgb(186,185,185);
+    background: -moz-linear-gradient(180deg, rgba(186,185,185,1) 20%, rgba(216,216,216,1) 50%, rgba(224,224,224,1) 65%);
+    background: -webkit-linear-gradient(180deg, rgba(186,185,185,1) 20%, rgba(216,216,216,1) 50%, rgba(224,224,224,1) 65%);
+    background: linear-gradient(180deg, rgba(186,185,185,1) 20%, rgba(216,216,216,1) 50%, rgba(224,224,224,1) 65%);
+    margin-top: 20px;
+    padding: 1.2rem;
+}
+
+.comment-form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.comment-form form{
+    width: 70%;
+}
+.comment-form input{
+    width: 80%;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+    background: whitesmoke;
+    overflow: visible;
+
+}
+.users-comments-display{
+    width: 70%;
+    background: whitesmoke;
+    min-height: 25rem;
+    margin-top: 3rem;
+
+}
+.each-comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1rem;
+    color: rgb(100, 99, 99);
+    border-top: 2px dotted rgb(100, 99, 99);
+    padding: 0.2rem;
+}
+.each-comment h6{
+    max-width: 60rem;
+    min-height:3rem;
+    max-height:5rem;
+    overflow: hidden;
+    padding: 0.5rem;
+    
+}
