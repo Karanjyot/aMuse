@@ -1,6 +1,4 @@
-
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 
 import $ from "jquery";
 import "./musicdisplay.css";
@@ -41,47 +39,92 @@ const MusicDisplay = (props) => {
     console.log(props.accounts);
   }, []);
 
+  const player = useRef();
+  const [isPlaying, setisPlaying] = useState(false);
+  const [song, setSong] = useState("");
+
+  // Function to control state if song is playing or paused
+  const play = () => {
+    if (isPlaying === false) {
+      player.current.play();
+      setisPlaying(true);
+    } else {
+      player.current.pause();
+      setisPlaying(false);
+    }
+  };
+
+  // stop song from playing
+  const stop = () => {
+    player.current.pause();
+  };
+
+  //Update play/pause button based off of state
+  const renderPlay = () => {
+    if (isPlaying === true) {
+      return (
+        <button className="btn btn-primary" onClick={play}>
+          <i className="fa fa-pause" />
+        </button> 
+      );
+    } else {
+      return (
+        <button className="btn btn-primary" onClick={play}>
+          <i className="fa fa-play" />
+        </button>
+      );
+    }
+  };
+
+  // const audioApp = ()=>{
+  //   var audio = new Audio ();
+
+  //   audio.addEventListener("ended", ()=>{
+  //     setisPlaying(true);
+  //     playingtrack = ""
+  //   })
+  //   const switchTrack = event =>{
+  //     playingtrack = event.target.id
+  //   }
+  // }
+
   // display all songs
   var allSongs = accounts.map((account, index) => {
-    return (
-      <div key={index}>
-        {account.songs.map((song, i) => {
-          return (
-            <li key={song._id} className="card mb-3">
-              <div className="row no-gutters">
-                <div className="col-md-4 ">
-                  {
-                    <img
-                      src={song.albumPhoto}
-                      className="card-img album-img"
-                      alt="..."
-                    />
-                  }
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <a href="/audioplayer">
-                      <h5 className="card-title">{song.name}</h5>
-                    </a>
-                    <a href="/audioplayer">
-                      <p className="card-text">{account.artist_nickname}</p>
-                    </a>
-                    <a href="/audioplayer">
-                      <button className="btn btn-primary">
-                        <i className="fas fa-play"></i>
-                      </button>
-                    </a>
-                    <button className="btn-add">
-                      <i className="fas fa-plus"></i>
-                    </button>
-                  </div>
-                </div>
+    return account.songs.map((song, i) => {
+      return (
+        <li key={song._id} className="card mb-3">
+          <div className="row no-gutters">
+            <div className="col-md-4 ">
+              {
+                <img
+                  src={song.albumPhoto}
+                  className="card-img album-img"
+                  alt="..."
+                />
+              }
+            </div>
+            <div className="col-md-8">
+              <div className="card-body">
+                <a href="/audioplayer">
+                  <h5 className="card-title">
+                    {song.name.replace(/\.[^/.]+$/, "")}
+                  </h5>
+                </a>
+                <a href="/audioplayer">
+                  <p className="card-text">{account.artist_nickname}</p>
+                </a>
+               
+                <audio ref={player} src={song.downloadURL} />
+                {renderPlay()}
+                <button className="btn-add">
+                  <i className="fas fa-plus"></i>
+                </button>
               </div>
-            </li>
-          );
-        })}
-      </div>
-    );
+            </div>
+          </div>
+        </li>
+      );
+    });
   });
 
   // display rap
@@ -105,7 +148,9 @@ const MusicDisplay = (props) => {
                   <div className="col-md-8">
                     <div className="card-body">
                       <a href="/audioplayer">
-                        <h5 className="card-title">{song.name}</h5>
+                        <h5 className="card-title">
+                          {song.name.replace(/\.[^/.]+$/, "")}
+                        </h5>
                       </a>
                       <a href="/audioplayer">
                         <p className="card-text">{account.artist_nickname}</p>
@@ -133,7 +178,6 @@ const MusicDisplay = (props) => {
 
   return (
     <div>
-
       <div className="App jumbotron">
         <h1 className="genre">Explore</h1>
 
@@ -144,7 +188,6 @@ const MusicDisplay = (props) => {
               id="listSearch"
               type="text"
               placeholder="Search for a song"
-
             />
             <br />
             <div className="jb">
