@@ -76,18 +76,6 @@ const MusicDisplay = (props) => {
     }
   };
 
-  // const audioApp = ()=>{
-  //   var audio = new Audio ();
-
-  //   audio.addEventListener("ended", ()=>{
-  //     setisPlaying(true);
-  //     playingtrack = ""
-  //   })
-  //   const switchTrack = event =>{
-  //     playingtrack = event.target.id
-  //   }
-  // }
-
   // display all songs
   var allSongs = accounts.map((account, index) => {
     return account.songs.map((song, i) => {
