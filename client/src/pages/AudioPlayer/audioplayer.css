@@ -1,32 +1,5 @@
 .audioPage{
     width: 100%;
     min-height: 40rem;
-
-
-    
-}
-.comment-section{
-    width: 98%;
-    height: 30rem;
-    overflow-y: scroll;
-    background-color: whitesmoke;
-    margin-top: 20px;
-}
-
-.comment-form{
-    width: 100%;
-}
-.comment-form input{
-    width: 80%;
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-left: 1px solid transparent;
-    background: whitesmoke;
-    overflow: visible;
-
-}
-.users-comments-display{
-    width: 100%;
-    background: white;
-    min-height: 25rem;
+   
 }

@@ -12,21 +12,24 @@ import drake from '../../images/drake.jpg';
  **/
 
 const MusicPlayer = (props) => {
-  const player = useRef();
+
   const [isPlaying, setisPlaying] = useState(false);
+  const [url, setURL] = useState("");
 
 
- 
+  const player = useRef();
 
 
   // Function to control state if song is playing or paused
   const play = () => {
-    if (isPlaying === false) {
-      player.current.play();
+    if (!isPlaying) {
       setisPlaying(true);
+      player.current.play();
+   
     } else {
-      player.current.pause();
       setisPlaying(false);
+      player.current.pause();
+    
     }
   };
 
@@ -52,32 +55,32 @@ const MusicPlayer = (props) => {
     }
   };
 
+  let name = props.song.name;
+
   return (
     <div className="container ">
       <div className="row mt-4 d-flex flex-row justify-content-between">
         <div className="col-md-6 d-flex flex-column align-items-center justify-content-center">
-          <audio ref={player}>
-            <source src={require("./Nas.mp3")} type="audio/mpeg"></source>
-          </audio>
+          <audio ref={player} src={props.song.downloadURL} />
           <div className="glow container">
             <div className="text-container">
-              <span className="text">Song Name</span>
+              <span className="text">{name}</span>
               <br />
               <div className="playback_controls">
-                <button className="audioBut" onClick="skip('back')">
+                <button className="audioBut" >
                   <i className="fa fa-fast-backward" />
                 </button>
                 {renderPlay()}
                 <button className="audioBut" onClick={stop}>
                   <i className="fa fa-stop" />
                 </button>
-                <button className="audioBut" onClick="skip('fwd')">
+                <button className="audioBut">
                   <i className="fa fa-fast-forward" />
                 </button>
               </div>
               <br />
               <div id="seekbar">
-                <input type="range" oninput="f" id="seek" defaultValue={0} />
+                <input type="range" id="seek" defaultValue={0} />
               </div>
               <br />
           </div>
@@ -85,8 +88,8 @@ const MusicPlayer = (props) => {
         <i className="fas fa-2x fa-heart song-page-like"> 4</i>      
        </div>
        <div className="col-md-5 d-flex flex-column align-items-center justify-content-around music-player-main">
-        <h2>Author</h2>
-        <img src={drake} width="90%"/>
+        <h2>{props.artist}</h2>
+        <img src={props.song.albumPhoto} width="90%" fluid/>
        </div>
       </div>
     </div>

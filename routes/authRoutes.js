@@ -194,6 +194,22 @@ app.get('/api/songs', isAuthenticated, (req,res)=>{
     }).catch(err=> res.json(err));
 })
 
+app.get('/api/song/:id', isAuthenticated, (req, res)=> {
+    Song.findById(req.params.id)
+        .then(song=>{
+            Account.find({
+                userId: song.authorID
+            }).then(account => {
+                res.json({
+                    msg: 'Author found',
+                    currentUser: req.user,
+                    song,
+                    account
+                })
+            })
+        }).catch(err=> console.log(err))
+})
+
 
 // msg:'Success, accounts found',
 // accounts:accounts,

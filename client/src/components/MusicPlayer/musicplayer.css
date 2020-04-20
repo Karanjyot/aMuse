@@ -152,7 +152,7 @@ input::-webkit-slider-thumb {
 }
 #seek {
 	display: block;
-	width: 155px;
+	width: 200px;
 }
 @-webkit-keyframes animate {
 	0% {
