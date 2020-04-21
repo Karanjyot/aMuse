@@ -28,13 +28,13 @@ const MusicDisplay = (props) => {
       })
 
       .catch((err) => console.log(err));
-    $(document).ready(function () {
-      $("#listSearch").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myList li").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      $(document).ready(function () {
+        $("#listSearch").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#myList li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          });
         });
-      });
     });
     console.log(props.accounts);
   }, []);
@@ -78,6 +78,7 @@ const MusicDisplay = (props) => {
 
   // display all songs
   var allSongs = accounts.map((account, index) => {
+    console.log("text");
     return account.songs.map((song, i) => {
       return (
         <li key={song._id} className="card mb-3">
@@ -103,7 +104,7 @@ const MusicDisplay = (props) => {
                 </a>
                
                 <audio ref={player} src={song.downloadURL} />
-                {renderPlay()}
+               {renderPlay()}
                 <button className="btn-add">
                   <i className="fas fa-plus"></i>
                 </button>

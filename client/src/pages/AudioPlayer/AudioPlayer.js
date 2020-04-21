@@ -29,25 +29,43 @@ const AudioPlayer = ()=>{
     useEffect(()=> {
         axios(`/api/current_user/data`)
         .then(res=> {
+            console.log(res);
         setAuthUser(res.data.account);
         }).catch(err=> {console.log(err)});
     }, [])
 
+    const likeSongHandler = ()=> {
+        axios.post(`/api/likesong/${id}`)
+        .then(res => console.log(res.data))
+        .catch(err=> console.log(err));
+    }
+
+    const commmentsNum = song.comments ? song.comments.length : 0;
+    const likeNum = song.likes ? song.likes.length : 0;
+    let comments = <h2>No added comments</h2>
+    if(song.comments && song.comments.length > 0){
+        comments = song.comments.map(com=> {
+           return <Comment key={com._id} value={com} curUser={authUser}/>
+        })
+    }
     return(
         <div className=" audioPage">
             <Header />
             
             <MusicPlayer account={account} artist={author} song={song} />
             <div className="container-fluid comment-section">
-                <h3><span># </span>Comments</h3>
+                <h4 >{likeNum}<i onClick={likeSongHandler} className="fas fa-1x fa-heart song-page-like"> </i>
+                    <span className="ml-5">{commmentsNum} </span>Comments
+                </h4>
                 <div className="row">
                     <div className="col-12">
-                        <CommentInput curUser={authUser}/>
+                        <CommentInput  song={song} account={account}  curUser={authUser}/>
                     </div>
                     <div className="col-12 users-comments-display">
+                        {/* <Comment />
                         <Comment />
-                        <Comment />
-                        <Comment />
+                        <Comment /> */}
+                        {comments}
                     </div>
                 </div>
             </div>      

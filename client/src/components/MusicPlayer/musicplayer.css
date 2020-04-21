@@ -28,18 +28,7 @@
             -ms-flex-pack: center;
                 justify-content: center;
     } */
-	.song-page-like{
-		color: rgb(185, 21, 21);
-		align-self: flex-start;
-		border-top: 1px solid rgb(185, 21, 21);
-		padding: 0.5rem;
-		cursor: pointer;
 
-	}
-	.song-page-like:hover{
-		color: rgb(119, 14, 14)
-
-	}
 	.music-player-main{
 		background: rgb(24, 23, 20);
 		border-top: 4px solid white;
