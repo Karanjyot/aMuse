@@ -10,7 +10,13 @@ const CommentSchema = new mongoose.Schema({
     },
     authorID:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'  
+        ref: 'Account'  
+    },
+    authorName:{
+        type: String, 
+    },
+    authorImage:{
+        type: String
     }
 });
 

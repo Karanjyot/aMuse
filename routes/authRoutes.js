@@ -4,6 +4,8 @@ const User = require('../models/User');
 const Account = require('../models/Account');
 const Song = require('../models/Song');
 const Image = require('../models/Image');
+const Comment = require('../models/Comment');
+const Like = require('../models/Like');
 module.exports=(app) =>{
 //*****************************************AUTHENTICATION ROUTES******************************************************************
 //Google Authentication 
@@ -195,7 +197,7 @@ app.get('/api/songs', isAuthenticated, (req,res)=>{
 })
 
 app.get('/api/song/:id', isAuthenticated, (req, res)=> {
-    Song.findById(req.params.id)
+    Song.findById(req.params.id).populate("comments")
         .then(song=>{
             Account.find({
                 userId: song.authorID
@@ -210,7 +212,47 @@ app.get('/api/song/:id', isAuthenticated, (req, res)=> {
         }).catch(err=> console.log(err))
 })
 
+// Adding a comment 
 
+app.post(`/api/comment/:id`, isAuthenticated, (req,res)=> {
+    const comment = {
+        text : req.body.text,
+        authorID : req.body.authorID,
+        authorName: req.body.authorName,
+        authorImage: req.body.authorImage
+    }
+    Song.findById(req.params.id)
+        .then(acc=> {
+            Comment.create(comment)
+                .then(com=> {
+                    acc.comments.push(com);
+                    acc.save();
+                    res.json({
+                        msg: 'Comment added'
+                    });
+                }).catch(err=> console.log(err))
+        }).catch(err=> {
+            res.json({
+                error: err
+            });
+        });
+});
+app.post('/api/likesong/:id', isAuthenticated, (req, res)=>{
+    Song.findById(req.params.id).populate("likes")
+        .then(sng=> {
+                Like.create({
+                    liked: req.user._id
+                }).then(like=> {
+                    sng.likes.push(like);
+                    sng.save();
+                    res.json({
+                        msg: 'You liked the song'
+                    })
+                }).catch(err=> res.json(err));      
+        }).catch(err=>[
+            res.json(err)
+        ]);
+})
 // msg:'Success, accounts found',
 // accounts:accounts,
 // app.get('/api/accounts/find',isAuthenticated, (req, res)=> {
