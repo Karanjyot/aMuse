@@ -40,6 +40,13 @@ const AccountSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId, 
             ref: `Image`
         }
+    ],
+
+    library: [
+        {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: `Library`
+        }
     ]
 
 });
