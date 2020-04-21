@@ -4,8 +4,9 @@ import "./home.css";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import Carousel from "../../components/Carousel/Carousel";
-import MusicDisplay from "../../components/MusicDisplay/MusicDisplay";
+import MusicDisplayAll from "../../components/MusicDisplay/MusicDisplayAll/MusicDisplayAll";
 import TrendingArtists from "../../components/TrendingArtists/TrendingArtists";
+import MusicDisplayGenre from "../../components/MusicDisplay/MusicDisplayGenre/MusicDisplayGenre";
 
 const Home = () => {
   const [accounts, setAccounts] = useState([]);
@@ -32,8 +33,10 @@ const Home = () => {
       <div className="container">
         <Carousel />
 
-        <MusicDisplay accounts={accounts}/>
-
+        <MusicDisplayAll accounts={accounts} />
+        <MusicDisplayGenre genre="rap"/>
+        <MusicDisplayGenre genre="rock"/>
+        
       
         <TrendingArtists view={viewArtistHadler} currentUser={currentUser} accounts={accounts} />
 

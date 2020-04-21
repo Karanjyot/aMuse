@@ -1,5 +1,5 @@
 import React from 'react'
-import "../musicdisplay.css"
+import "../MusicDisplayAll/musicdisplayall.css"
 import {useHistory} from "react-router-dom"
 import defaultPhoto from "../../../images/photo.png"
 import defaultMusic from '../../../images/note.png'
