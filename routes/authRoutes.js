@@ -237,10 +237,12 @@ module.exports = (app) => {
 
   app.post("/api/current_user/save_song/:id", isAuthenticated, (req, res) => {
     Account.findById(req.params.id).then((account) => {
-      Library.create({ song: req.body.song_id })
-        .then((lib) => {
-          account.library.push(lib);
-          acc.save();
+        console.log(req.body.song)
+    //   Library.create({ song: req.body.song })
+    Song.findById(req.body.song)
+        .then((sng) => {
+          account.library.push(sng);
+          account.save();
           res.json({
             msg: "Song has been successfully stored to Library",
           });
@@ -252,6 +254,17 @@ module.exports = (app) => {
           })
         );
     });
+  });
+
+  app.get("/api/librarysong/:id", isAuthenticated, (req, res) => {
+    Song.findById(req.params.id)
+      .then((song) => {
+        res.json({
+            msg: "Song found",
+            song,
+          });
+      })
+      .catch((err) => console.log(err));
   });
 
 //   app.post("/api/current_user/upload_song/:id", isAuthenticated, (req, res) => {

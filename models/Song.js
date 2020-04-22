@@ -6,7 +6,7 @@ const SongSchema = new mongoose.Schema({
     },
     downloadURL: {
         type: String,
-        required: true
+        required: false
     },
     albumPhoto: {
         type: String, 

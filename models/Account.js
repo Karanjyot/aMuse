@@ -1,56 +1,78 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 //Marked for deletion
 const AccountSchema = new mongoose.Schema({
-    artist_nickname: {
+  artist_nickname: {
+    type: String,
+    default: "",
+  },
+  genre: {
+    type: String,
+    default: "",
+  },
+  description: {
+    type: String,
+    default: "",
+  },
+  country: {
+    type: String,
+    default: "",
+  },
+  city: {
+    type: String,
+    default: "",
+  },
+  profilePicture: {
+    type: String,
+    default: "",
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
+  songs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: `Song`,
+    },
+  ],
+  images: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: `Image`,
+    },
+  ],
+
+  library: [
+    {
+      name: {
         type: String,
-        default: ""
-    },
-    genre:{
-        type: String, 
-        default: ""
-    },
-    description:{
-        type: String, 
-        default: ""
-    },
-    country: {
-        type: String, 
-        default: ""
-    },
-    city: {
-        type: String, 
-        default: ""
-    },
-    profilePicture: {
-        type: String, 
-        default: ""
-    },
-    userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'users'  
-    },
-    songs: [
+      },
+      downloadURL: {
+        type: String,
+        required: false,
+      },
+      albumPhoto: {
+        type: String,
+        required: false,
+      },
+      comments: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: `Song`
-        }   
-    ],
-    images: [
-        {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: `Image`
-        }
-    ],
-
-    library: [
-        {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: `Library`
-        }
-    ]
-
+          type: mongoose.Schema.Types.ObjectId,
+          ref: `Comment`,
+        },
+      ],
+      likes: {
+        type: Number,
+        default: 0,
+      },
+      authorID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    },
+  ],
 });
 
-const Account = mongoose.model('Account', AccountSchema);
+const Account = mongoose.model("Account", AccountSchema);
 
 module.exports = Account;

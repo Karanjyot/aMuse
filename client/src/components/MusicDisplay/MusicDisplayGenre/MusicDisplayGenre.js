@@ -71,6 +71,7 @@ const MusicDisplayGenre = (props) => {
                   </a>
 
                   <MusicPlayerHome
+                    artist ={account.artist_nickname}
                     songName={song.name}
                     downloadURL={song.downloadURL}
                     songID={song._id}

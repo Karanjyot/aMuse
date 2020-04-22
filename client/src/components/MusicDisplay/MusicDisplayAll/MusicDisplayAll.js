@@ -19,6 +19,8 @@ import MusicPlayerHome from "../../MusicPlayerHome/MusicPlayerHome";
 
 const MusicDisplayAll = (props) => {
   const [accounts, setAccounts] = useState([]);
+  
+  
 
   useEffect(() => {
     axios
@@ -29,6 +31,8 @@ const MusicDisplayAll = (props) => {
       })
 
       .catch((err) => console.log(err));
+
+
     $(document).ready(function () {
       $("#listSearch1").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -39,6 +43,9 @@ const MusicDisplayAll = (props) => {
     });
     console.log(props.accounts);
   }, []);
+
+
+ 
 
   // display all songs
   var allSongs = accounts.map((account, index) => {
@@ -69,10 +76,12 @@ const MusicDisplayAll = (props) => {
                 {/* <audio controls ref={player} src={song.downloadURL} />
                 {renderPlay()} */}
                 <MusicPlayerHome
+                  artist ={account.artist_nickname}
                   songName={song.name}
                   downloadURL={song.downloadURL}
                   songID={song._id}
                 />
+                
               </div>
             </div>
           </div>
