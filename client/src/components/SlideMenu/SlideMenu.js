@@ -98,7 +98,8 @@ const SlideMenu = (props) => {
     const songObject = {
       name: songName, 
       downloadURL: urlDownload,
-      albumPhoto: imgURL
+      albumPhoto: imgURL, 
+      accountID: props.accId
     }
     axios.post(`/api/current_user/upload_song/${props.accId}`, songObject)
       .then(res=> {

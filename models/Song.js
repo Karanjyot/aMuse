@@ -25,9 +25,13 @@ const SongSchema = new mongoose.Schema({
         }
     ],
     authorID:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'users'  
     },
+    accountID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "Account"
+    }
 });
 
 const Song = mongoose.model('Song', SongSchema);

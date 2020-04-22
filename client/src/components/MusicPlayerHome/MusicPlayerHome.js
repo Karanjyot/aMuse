@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./MusicPlayerHome.css";
+import $ from "jquery";
 /**
  * @author
  * @function MusicPlayer
@@ -24,11 +25,26 @@ const MusicPlayerHome = (props) => {
 
   // retrieve id of current user
   useEffect(() => {
+    $(document).ready(function(){
+      $("#heart").click(function(){
+        if($("#heart").hasClass("liked")){
+          $("#heart").html('<i class="far fa-heart" aria-hidden="true"></i>');
+          $("#heart").removeClass("liked");
+        }else{
+          $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+          $("#heart").addClass("liked");
+        }
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     axios.get(`/api/current_user/data`).then((res) => {
       console.log(res.data.account._id);
       setCurrentAccountId(res.data.account._id);
     });
   }, []);
+
 
   // event handler for adding song to library
   const libraryHandler = () => {
@@ -75,6 +91,8 @@ const MusicPlayerHome = (props) => {
           <button onClick={libraryHandler} className="btn-add">
             <i className="fas fa-plus"></i>
           </button>
+          <span id="heart"><i className="far fa-heart" aria-hidden="true" /> </span>
+
           {/* <button onClick={songStatusHandler}>
           {songState}
             

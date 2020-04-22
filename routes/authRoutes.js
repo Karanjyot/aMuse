@@ -103,6 +103,7 @@ module.exports = (app) => {
     })
       .populate("songs")
       .populate("images")
+      
       .then((account) => {
         res.json({
           msg: "Found users account",
@@ -165,6 +166,7 @@ module.exports = (app) => {
       name: req.body.name,
       downloadURL: req.body.downloadURL,
       albumPhoto: req.body.albumPhoto,
+      accountID: req.body.accountID,
       authorID: req.user._id,
     };
     Account.findById(req.params.id)
@@ -216,11 +218,9 @@ module.exports = (app) => {
       })
       .catch((err) => res.json(err));
   });
-
- 
+  //Retrieve a song and its associated account. Now can be done through populating
   app.get("/api/song/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id)
-      .populate("comments")
+    Song.findById(req.params.id).populate('comments')
       .then((song) => {
         Account.find({
           userId: song.authorID,
@@ -263,6 +263,7 @@ module.exports = (app) => {
         });
       });
   });
+  // Adding a like
   app.post("/api/likesong/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id)
       .populate("likes")
@@ -315,4 +316,26 @@ module.exports = (app) => {
       })
       .catch((err) => console.log(err));
   });
+
+
+//   app.get("/api/current_user/data/library", isAuthenticated, (req, res) => {
+//     const id = req.user._id;
+//     Account.findOne({
+//       userId: id,
+//     })
+//       .populate("songs")
+//       .populate("images")
+//       .populate("libraries")
+//       .then((account) => {
+//         res.json({
+//           msg: "Found users account",
+//           user: req.user,
+//           account,
+//         });
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   });
+
 };

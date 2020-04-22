@@ -71,6 +71,10 @@ const AccountSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
       },
+      accountID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "Account"
+    }
     },
   ],
 });

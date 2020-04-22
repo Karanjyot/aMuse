@@ -8,3 +8,5 @@ Required small fixes
 
 Create a Footer component
 - This component will create a smooth ending for our pages
+
+- Home route uses an identical useEffect call in its component, whats the point
