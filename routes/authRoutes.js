@@ -218,25 +218,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/song/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id)
-      .then((song) => {
-        Account.find({
-          userId: song.authorID,
-        }).then((account) => {
-          res.json({
-            msg: "Author found",
-            currentUser: req.user,
-            song,
-            account,
-          });
-        });
-      })
-      .catch((err) => console.log(err));
-  });
-
-  app.get("/api/song/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id)
-      .populate("comments")
+    Song.findById(req.params.id).populate('comments')
       .then((song) => {
         Account.find({
           userId: song.authorID,

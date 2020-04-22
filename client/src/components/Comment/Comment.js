@@ -11,7 +11,7 @@ const Comment = (props) => {
         <div className="each-comment">
             <div className="d-inline">
                 <p>{props.value.authorName}</p>
-                <p>{props.value.datePosted.substring(0, 10)}</p>
+                <p>{props.value.datePosted}</p>
             </div>  
             <h6>{props.value.text}</h6>
             <img src={props.value.authorImage} width="5%" height="50%"/>
