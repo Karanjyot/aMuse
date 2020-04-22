@@ -28,6 +28,7 @@ const MusicDisplayView = (props) => {
             let likes = song.likes.length;
             if(props.viewType === "account"){
                 return (
+                    //Controls for song output when user views someones account
                     <div className="d-flex flex-column align-items-center justify-content-evenly tunes-by-user" key={song._id}>                     
                             <p onClick={()=>songPageHandler(song._id)} className="tunes-byuser-songname">{cleanedName}</p>                  
                             <div className="d-flex flex-row align-items-center justify-content-end">                        
@@ -51,8 +52,9 @@ const MusicDisplayView = (props) => {
                     </div>
                 )
             }else if(props.viewType === "profile"){
-                            return (
-                                <div className="d-flex flex-column align-items-center justify-content-evenly tunes-by-user" key={song._id}>                     
+                return (
+                    //Controls for song output when user views his profile account
+                    <div className="d-flex flex-column align-items-center justify-content-evenly tunes-by-user" key={song._id}>                     
                                         <p onClick={()=>songPageHandler(song._id)} className="tunes-byuser-songname">{cleanedName}</p>                  
                                         <div className="d-flex flex-row align-items-center justify-content-end">                        
                                             <button className="btn btn-outline-link mr-5 d-flex  p-0">
@@ -67,7 +69,7 @@ const MusicDisplayView = (props) => {
                                             <button className="btn btn-outline-danger btn-sm ml-4">X</button>
                                         </div>
                                 </div>
-                            )  
+                )  
             }
         })
     }
