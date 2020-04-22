@@ -104,6 +104,9 @@ module.exports = (app) => {
       .populate("songs")
       .populate("images")
       .then((account) => {
+      //  let comments = account.songs.forEach(song=> {
+      //     return song.populate('comments');
+      //   })
         res.json({
           msg: "Found users account",
           user: req.user,
