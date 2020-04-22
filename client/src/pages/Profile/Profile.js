@@ -159,7 +159,7 @@ return (
         </div>
         <MusicDisplayView userAccount={account} viewType="profile"/>
         {backdrop}
-        <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
+        <UploadMenu displayForm={isUpdating} acc={account} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
      
     </div>
     <Footer />

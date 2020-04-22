@@ -12,6 +12,12 @@ const SongSchema = new mongoose.Schema({
         type: String, 
         required: false,
     },
+    artist: {
+        type:String 
+    },
+    genre:{
+        type: String
+    },
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
