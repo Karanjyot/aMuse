@@ -6,13 +6,15 @@ import MusicPlayer from "../../components/MusicPlayer/MusicPlayer"
 import Header from "../../components/Header/Header"
 import Comment from "../../components/Comment/Comment";
 import CommentInput from "../../components/Comment/CommentInput/CommentInput";
-
+import Footer from '../../components/UI/Footer/Footer';
 
 const AudioPlayer = ()=>{
     const [song, setSong] =useState({});
     const [account, setAccount] = useState({})
     const [author, setAuthor] =useState("")
     const [authUser, setAuthUser] = useState({});
+    //
+    const [likeAgain, setLikeAgain] = useState(null);
 
     let {id} = useParams();
 
@@ -36,12 +38,19 @@ const AudioPlayer = ()=>{
 
     const likeSongHandler = ()=> {
         axios.post(`/api/likesong/${id}`)
-        .then(res => console.log(res.data))
-        .catch(err=> console.log(err));
+        .then(res =>{
+            if(res.data.code === 11000){
+                setLikeAgain("Already liked this !")
+            }
+        })
+        .catch(err=> {
+            console.log(err);
+        });
     }
 
     const commmentsNum = song.comments ? song.comments.length : 0;
     const likeNum = song.likes ? song.likes.length : 0;
+    const likeDuplicate = likeAgain;
     let comments = <h2>No added comments</h2>
     if(song.comments && song.comments.length > 0){
         comments = song.comments.map(com=> {
@@ -54,9 +63,9 @@ const AudioPlayer = ()=>{
             
             <MusicPlayer account={account} artist={author} song={song} />
             <div className="container-fluid comment-section">
-                <h4 >{likeNum}<i onClick={likeSongHandler} className="fas fa-1x fa-heart song-page-like"> </i>
+                <h5 >{likeNum}<i onClick={likeSongHandler} className="fas fa-1x fa-heart song-page-like"> </i>{likeDuplicate}
                     <span className="ml-5">{commmentsNum} </span>Comments
-                </h4>
+                </h5>
                 <div className="row">
                     <div className="col-12">
                         <CommentInput  song={song} account={account}  curUser={authUser}/>
@@ -68,7 +77,8 @@ const AudioPlayer = ()=>{
                         {comments}
                     </div>
                 </div>
-            </div>      
+            </div>
+            <Footer />      
         </div>
     )
 }

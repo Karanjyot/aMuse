@@ -7,7 +7,7 @@ import Carousel from "../../components/Carousel/Carousel";
 import MusicDisplayAll from "../../components/MusicDisplay/MusicDisplayAll/MusicDisplayAll";
 import TrendingArtists from "../../components/TrendingArtists/TrendingArtists";
 import MusicDisplayGenre from "../../components/MusicDisplay/MusicDisplayGenre/MusicDisplayGenre";
-
+import Footer from '../../components/UI/Footer/Footer';
 const Home = () => {
   const [accounts, setAccounts] = useState([]);
   const [currentUser, setCurrentUser]= useState({});
@@ -32,15 +32,16 @@ const Home = () => {
       <Header />
       <div className="container">
         <Carousel />
-
+        <TrendingArtists view={viewArtistHadler} currentUser={currentUser} accounts={accounts} />
         <MusicDisplayAll accounts={accounts} />
-        <MusicDisplayGenre genre="rap"/>
-        <MusicDisplayGenre genre="rock"/>
+        {/* <MusicDisplayGenre genre="rap"/>
+        <MusicDisplayGenre genre="rock"/> */}
         
       
-        <TrendingArtists view={viewArtistHadler} currentUser={currentUser} accounts={accounts} />
+       
 
       </div>
+      <Footer />
     </div>
   );
 };
