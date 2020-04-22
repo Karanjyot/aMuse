@@ -11,6 +11,7 @@ import Profile from "./pages/Profile/Profile"
 import AudioPlayer from "./pages/AudioPlayer/AudioPlayer"
 import NoMatch from "./pages/NoMatch/NoMatch"
 import AccountView from "./pages/AccountView/AccountView"
+import Library from "./pages/Library/Library"
 
 const App = () =>{
         return (
@@ -22,9 +23,12 @@ const App = () =>{
                         <Route path ="/home" component ={Home} />  
                         <Route path ="/profile" component ={Profile} />  
                         <Route path ="/audioplayer" component ={AudioPlayer} /> 
+                        <Route path="/library" component={Library} />
                         <Route exact path ="/view-account/:id" component ={AccountView} /> 
                         <Route path ="/view-song/:id" component ={AudioPlayer} />
                         <Route path="*" component={NoMatch} />
+                        
+                        
                     </Switch>
                 </BrowserRouter>
             </div   >

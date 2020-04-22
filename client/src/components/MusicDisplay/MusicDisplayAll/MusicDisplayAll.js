@@ -29,6 +29,7 @@ const MusicDisplayAll = (props) => {
       })
 
       .catch((err) => console.log(err));
+
     $(document).ready(function () {
       $("#listSearch1").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -69,6 +70,7 @@ const MusicDisplayAll = (props) => {
                 {/* <audio controls ref={player} src={song.downloadURL} />
                 {renderPlay()} */}
                 <MusicPlayerHome
+                  artist={account.artist_nickname}
                   songName={song.name}
                   downloadURL={song.downloadURL}
                   songID={song._id}
