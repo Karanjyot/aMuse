@@ -4,7 +4,8 @@ const User = require("../models/User");
 const Account = require("../models/Account");
 const Song = require("../models/Song");
 const Image = require("../models/Image");
-const Library = require("../models/Library");
+const Comment = require("../models/Comment");
+const Like = require("../models/Like");
 module.exports = (app) => {
   //*****************************************AUTHENTICATION ROUTES******************************************************************
   //Google Authentication
@@ -233,13 +234,76 @@ module.exports = (app) => {
       .catch((err) => console.log(err));
   });
 
+  app.get("/api/song/:id", isAuthenticated, (req, res) => {
+    Song.findById(req.params.id)
+      .populate("comments")
+      .then((song) => {
+        Account.find({
+          userId: song.authorID,
+        }).then((account) => {
+          res.json({
+            msg: "Author found",
+            currentUser: req.user,
+            song,
+            account,
+          });
+        });
+      })
+      .catch((err) => console.log(err));
+  });
+
+  // Adding a comment
+
+  app.post(`/api/comment/:id`, isAuthenticated, (req, res) => {
+    const comment = {
+      text: req.body.text,
+      authorID: req.body.authorID,
+      authorName: req.body.authorName,
+      authorImage: req.body.authorImage,
+    };
+    Song.findById(req.params.id)
+      .then((acc) => {
+        Comment.create(comment)
+          .then((com) => {
+            acc.comments.push(com);
+            acc.save();
+            res.json({
+              msg: "Comment added",
+            });
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        res.json({
+          error: err,
+        });
+      });
+  });
+  app.post("/api/likesong/:id", isAuthenticated, (req, res) => {
+    Song.findById(req.params.id)
+      .populate("likes")
+      .then((sng) => {
+        Like.create({
+          liked: req.user._id,
+        })
+          .then((like) => {
+            sng.likes.push(like);
+            sng.save();
+            res.json({
+              msg: "You liked the song",
+            });
+          })
+          .catch((err) => res.json(err));
+      })
+      .catch((err) => [res.json(err)]);
+  });
+
   //Save song to library
 
   app.post("/api/current_user/save_song/:id", isAuthenticated, (req, res) => {
     Account.findById(req.params.id).then((account) => {
-        console.log(req.body.song)
-    //   Library.create({ song: req.body.song })
-    Song.findById(req.body.song)
+      console.log(req.body.song);
+      Song.findById(req.body.song)
         .then((sng) => {
           account.library.push(sng);
           account.save();
@@ -256,54 +320,15 @@ module.exports = (app) => {
     });
   });
 
+  // retrieve all songs from library
   app.get("/api/librarysong/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id)
       .then((song) => {
         res.json({
-            msg: "Song found",
-            song,
-          });
+          msg: "Song found",
+          song,
+        });
       })
       .catch((err) => console.log(err));
   });
-
-//   app.post("/api/current_user/upload_song/:id", isAuthenticated, (req, res) => {
-//     const song = {
-//       name: req.body.name,
-//       downloadURL: req.body.downloadURL,
-//       albumPhoto: req.body.albumPhoto,
-//       authorID: req.user._id,
-//     };
-//     Account.findById(req.params.id)
-//       .then((acc) => {
-//         Song.create(song)
-//           .then((sng) => {
-//             acc.songs.push(sng);
-//             acc.save();
-//             res.json({
-//               msg: "Song has been successfully stored",
-//             });
-//           })
-//           .catch((err) => console.log(err));
-//       })
-//       .catch((err) =>
-//         res.json({
-//           msg: "Account not found",
-//           error: err,
-//         })
-//       );
-//   });
-
-  // msg:'Success, accounts found',
-  // accounts:accounts,
-  // app.get('/api/accounts/find',isAuthenticated, (req, res)=> {
-  //     Account.find({})
-  //         .then(accounts => {
-  //             res.json({
-  //                 msg:'Success, accounts found',
-  //                 accounts:accounts,
-  //                 currentUser: req.user
-
-  //             });
-  //         }).catch(err=> console.log(err));
 };

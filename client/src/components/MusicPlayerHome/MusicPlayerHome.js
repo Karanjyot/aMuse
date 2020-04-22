@@ -1,5 +1,5 @@
-import React, { useState, useRef,useEffect } from "react";
-import axios from "axios"
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import "./MusicPlayerHome.css";
 /**
  * @author
@@ -11,9 +11,8 @@ const MusicPlayerHome = (props) => {
   const [currentTime, setCurrntTime] = useState(null);
   const [duration, setDuration] = useState(null);
 
-  const [currentAccountId, setCurrentAccountId] = useState("")
+  const [currentAccountId, setCurrentAccountId] = useState("");
 
-  
   const song = {
     title: props.songName,
     author: props.author,
@@ -21,32 +20,34 @@ const MusicPlayerHome = (props) => {
     id: props.songID,
   };
 
-  var songId = props.songID
-  useEffect(()=> {
-    axios.get(`/api/current_user/data`)
-      .then(res=> {
-        console.log(res.data.account._id);
-        setCurrentAccountId(res.data.account._id);
-      });
+  var songId = props.songID;
+
+  // retrieve id of current user
+  useEffect(() => {
+    axios.get(`/api/current_user/data`).then((res) => {
+      console.log(res.data.account._id);
+      setCurrentAccountId(res.data.account._id);
+    });
   }, []);
 
-   // event handler for adding song to library
-const libraryHandler = ()=>{
-  axios.post(`/api/current_user/save_song/${currentAccountId}`,{song:songId})
-  .then((res)=>{
-    console.log(res)
-  })
-  .catch(err =>{
-    console.log(err)
-  })
-}
-   
+  // event handler for adding song to library
+  const libraryHandler = () => {
+    axios
+      .post(`/api/current_user/save_song/${currentAccountId}`, { song: songId })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  // audio handlers
   const player = useRef();
 
   const songStatusHandler = () => {
     setIsPlaying(!isPlaying);
-    console.log(song.id)
+    console.log(song.id);
     if (isPlaying) {
       player.current.pause();
     } else {
@@ -59,7 +60,11 @@ const libraryHandler = ()=>{
     player.current.currentTime = 0;
   };
 
-  let songState = isPlaying ? <i className="fa fa-pause" /> : <i className="fa fa-play" />;
+  let songState = isPlaying ? (
+    <i className="fa fa-pause" />
+  ) : (
+    <i className="fa fa-play" />
+  );
   const playerCore = (
     <div>
       <div className="song-name">
@@ -68,8 +73,8 @@ const libraryHandler = ()=>{
             {songState}
           </button>
           <button onClick={libraryHandler} className="btn-add">
-                  <i className="fas fa-plus"></i>
-                </button>
+            <i className="fas fa-plus"></i>
+          </button>
           {/* <button onClick={songStatusHandler}>
           {songState}
             

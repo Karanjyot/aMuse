@@ -85,7 +85,7 @@ const MusicPlayer = (props) => {
               <br />
           </div>
         </div>
-        <i className="fas fa-2x fa-heart song-page-like"> 4</i>      
+             
        </div>
        <div className="col-md-5 d-flex flex-column align-items-center justify-content-around music-player-main">
         <h2>{props.artist}</h2>

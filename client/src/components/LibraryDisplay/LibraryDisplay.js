@@ -18,7 +18,6 @@ const LibraryDisplay = (props) => {
     });
   }, []);
 
-
   var allSongs = Library.map((song, index) => {
     return (
       <li key={`${song._id}1`} className="card mb-3">
