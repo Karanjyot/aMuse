@@ -165,6 +165,7 @@ module.exports = (app) => {
       name: req.body.name,
       downloadURL: req.body.downloadURL,
       albumPhoto: req.body.albumPhoto,
+      accountID: req.body.accountID,
       authorID: req.user._id,
     };
     Account.findById(req.params.id)
@@ -216,7 +217,7 @@ module.exports = (app) => {
       })
       .catch((err) => res.json(err));
   });
-
+  //Retrieve a song and its associated account. Now can be done through populating
   app.get("/api/song/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id).populate('comments')
       .then((song) => {
@@ -261,6 +262,7 @@ module.exports = (app) => {
         });
       });
   });
+  // Adding a like
   app.post("/api/likesong/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id)
       .populate("likes")
