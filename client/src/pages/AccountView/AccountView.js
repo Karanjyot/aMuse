@@ -5,6 +5,7 @@ import './accountView.css'
 import Header from '../../components/Header/Header'
 import ProfileViewDisplay from '../../components/ProfileDisplay/ProfileViewDisplay/ProfileViewDisplay'
 import MusicDisplayView from '../../components/MusicDisplay/MusicDisplayView/MusicDisplayView'
+import Footer from '../../components/UI/Footer/Footer';
 /**
 * @author
 * @function AccountView
@@ -26,11 +27,10 @@ const AccountView = (props) => {
         <Header />
         <div className="container">
             <ProfileViewDisplay userAccount = {selectedAccount} />
-            <MusicDisplayView userAccount = {selectedAccount} />
+            <MusicDisplayView userAccount = {selectedAccount} viewType="account"/>
+            
         </div>
-
-        
-
+        <Footer />
     </div>
    )
 

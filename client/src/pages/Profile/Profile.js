@@ -5,8 +5,8 @@ import ProfileDisplay from "../../components/ProfileDisplay/ProfileDisplay"
 import Header from "../../components/Header/Header"
 import UploadMenu from '../../components/SlideMenu/SlideMenu'
 import Backdrop from '../../components/Backdrop/Backdrop'
-
-
+import Footer from '../../components/UI/Footer/Footer'
+import MusicDisplayView from '../../components/MusicDisplay/MusicDisplayView/MusicDisplayView'
 
 
 const Profile = () =>{
@@ -138,14 +138,14 @@ return (
             <h2>General Info</h2>
           </span>
           <div className="row profile-forms-row">
-            <div className="col-md-4  d-flex flex-column justify-content-start align-items-center">
+            <div className="col-md-6  d-flex flex-column justify-content-start align-items-center">
               <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-secondary">Select Profile Picture</button>
               <div className={selectProfileSectionStyle}>
                 {selectProfile}
                 
               </div>
             </div >
-            <div className="col-md-8 d-flex flex-column align-items-center justify-content-between">
+            <div className="col-md-6 d-flex flex-column align-items-center justify-content-between">
               <form onSubmit={submitUpdateHandler} className="general-form">
                 <input value={name} onChange={(e)=>setName(e.target.value)} type="text"  placeholder="Artistic name"/>
                 <input value={genre} onChange={(e)=>setGenre(e.target.value)} type="text"  placeholder="Your genre(s)"/>
@@ -157,10 +157,12 @@ return (
             </div>
           </div>
         </div>
+        <MusicDisplayView userAccount={account} viewType="profile"/>
         {backdrop}
         <UploadMenu displayForm={isUpdating} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
      
     </div>
+    <Footer />
     </div>
 )
 
