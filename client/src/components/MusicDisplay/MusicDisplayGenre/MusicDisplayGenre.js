@@ -102,11 +102,9 @@ const MusicDisplayGenre = (props) => {
           />
           <br />
           <div className="jb">
-            <div className="row">
-              <ul className="list-group" id={`${song.genre}`}>
-                {genre}
-              </ul>
-            </div>
+            <ul className="list-group" id={`${song.genre}`}>
+              {genre}
+            </ul>
           </div>
         </div>
       </div>

@@ -97,11 +97,10 @@ const MusicDisplayAll = (props) => {
           />
           <br />
           <div className="jb">
-            <div className="row">
+            
               <ul className="list-group" id="myList1">
                 {allSongs}
               </ul>
-            </div>
           </div>
         </div>
       </div>
