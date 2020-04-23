@@ -24,20 +24,23 @@ const MusicPlayerHome = (props) => {
   var songId = props.songID;
 
   // retrieve id of current user
-  useEffect(() => {
-    $(document).ready(function(){
-      $("#heart").click(function(){
-        if($("#heart").hasClass("liked")){
-          $("#heart").html('<i class="far fa-heart" aria-hidden="true"></i>');
-          $("#heart").removeClass("liked");
-        }else{
-          $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-          $("#heart").addClass("liked");
-        }
-      });
-    });
-  }, []);
-
+  // useEffect(() => {
+  //   $(document).ready(function(){
+  //     $("#heart").click(function(){
+  
+  //       if($("#heart").hasClass("liked")){
+  //         $("#heart").html('<i class="far fa-heart" aria-hidden="true"></i>');
+  //         $("#heart").removeClass("liked");
+  //       }else{
+  //         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+  //         $("#heart").addClass("liked");
+  //       }
+  //     });
+  //   });
+  // }, []);
+  const [Account, setCurrentAccount] = useState([]);
+  const [Library, setLibrary] = useState([]);
+  const [LibraryID, setLibraryID] = useState([]);
   useEffect(() => {
     axios.get(`/api/current_user/data`).then((res) => {
       console.log(res.data.account._id);
@@ -45,9 +48,37 @@ const MusicPlayerHome = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    axios.get(`/api/current_user/data`).then((res) => {
+      console.log(res.data.account);
+      setCurrentAccount(res.data.account);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`/api/current_user/data`).then((res) => {
+      console.log(res.data.account.library);
+      setLibrary(res.data.account.library);
+    });
+  }, []);
+
+
+  //  lib(){
+  //   Library.map((lib, index) => {
+  
+  //     setLibraryID(prevState => ({
+  //       myArray: [...prevState, lib._id]
+  //     }))
+  //   });
+  //  } 
+
+  // lib
+  
+  // console.log(lib)
 
   // event handler for adding song to library
   const libraryHandler = () => {
+
     axios
       .post(`/api/current_user/save_song/${currentAccountId}`, { song: songId })
       .then((res) => {
@@ -60,6 +91,7 @@ const MusicPlayerHome = (props) => {
 
   // audio handlers
   const player = useRef();
+  const like = useRef();
 
   const songStatusHandler = () => {
     setIsPlaying(!isPlaying);
@@ -91,7 +123,7 @@ const MusicPlayerHome = (props) => {
           <button onClick={libraryHandler} className="btn-add">
             <i className="fas fa-plus"></i>
           </button>
-          <span id="heart"><i className="far fa-heart" aria-hidden="true" /> </span>
+          <span ref={like} onClick={libraryHandler}id="heart"><i className="far fa-heart" aria-hidden="true" /> </span>
 
           {/* <button onClick={songStatusHandler}>
           {songState}
@@ -104,6 +136,9 @@ const MusicPlayerHome = (props) => {
       </div>
     </div>
   );
+
+
+
   return (
     <div className="player-core">
       {playerCore}
