@@ -1,13 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import $ from "jquery";
 import "./musicdisplayall.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import axios from "axios";
-import MusicPlayer from "../../MusicPlayer/MusicPlayer";
-import Search from "../../Search/search";
 import MusicPlayerHome from "../../MusicPlayerHome/MusicPlayerHome";
 
 /**
@@ -20,6 +14,7 @@ import MusicPlayerHome from "../../MusicPlayerHome/MusicPlayerHome";
 const MusicDisplayAll = (props) => {
   const [accounts, setAccounts] = useState([]);
 
+  // retrieve information for all accounts
   useEffect(() => {
     axios
       .get("api/accounts/find")
@@ -27,9 +22,12 @@ const MusicDisplayAll = (props) => {
         console.log(res.data.accounts);
         setAccounts(res.data.accounts);
       })
-
       .catch((err) => console.log(err));
+    console.log(props.accounts);
+  }, []);
 
+  // search for a song
+  useEffect(() => {
     $(document).ready(function () {
       $("#listSearch1").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -38,7 +36,6 @@ const MusicDisplayAll = (props) => {
         });
       });
     });
-    console.log(props.accounts);
   }, []);
 
   // display all songs
@@ -50,7 +47,11 @@ const MusicDisplayAll = (props) => {
             <div className="col-md-4 ">
               {
                 <img
-                  src={song.albumPhoto}
+                  src={
+                    song.albumPhoto
+                      ? song.albumPhoto
+                      : "https://assets.audiomack.com/default-song-image.jpg"
+                  }
                   className="card-img album-img"
                   alt="..."
                 />
@@ -58,17 +59,16 @@ const MusicDisplayAll = (props) => {
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <a href="/audioplayer">
-                  <h5 className="card-title">
+                <a href={`/view-song/${song._id}`}>
+                  <h5 className="card-title song-name">
                     {song.name.replace(/\.[^/.]+$/, "")}
                   </h5>
                 </a>
-                <a href="/audioplayer">
-                  <p className="card-text">{account.artist_nickname}</p>
+                <a href={`/view-account/${account._id}`}>
+                  <p className="card-text artist-name">
+                    {account.artist_nickname}
+                  </p>
                 </a>
-
-                {/* <audio controls ref={player} src={song.downloadURL} />
-                {renderPlay()} */}
                 <MusicPlayerHome
                   artist={account.artist_nickname}
                   songName={song.name}
@@ -97,10 +97,9 @@ const MusicDisplayAll = (props) => {
           />
           <br />
           <div className="jb">
-            
-              <ul className="list-group" id="myList1">
-                {allSongs}
-              </ul>
+            <ul className="list-group" id="myList1">
+              {allSongs}
+            </ul>
           </div>
         </div>
       </div>

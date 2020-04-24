@@ -46,7 +46,7 @@ opacity: .5;
   }
 
   .jb{
-    height: 450px!important;
+    height: 400px!important;
     overflow: auto;
 }
 
@@ -155,3 +155,12 @@ opacity: .5;
   margin-left: 1rem;
   font-weight: 500;
 }
+
+  .song-name{
+    font-family: 'Baloo Tamma 2', cursive;
+    color: black;
+  }
+
+  .artist-name{
+    margin-top:-10px
+  }

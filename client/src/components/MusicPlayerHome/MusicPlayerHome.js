@@ -9,75 +9,35 @@ import $ from "jquery";
 
 const MusicPlayerHome = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrntTime] = useState(null);
-  const [duration, setDuration] = useState(null);
-
   const [currentAccountId, setCurrentAccountId] = useState("");
+  const [Library, setLibrary] = useState([]);
+  const [inLib, setInLib] = useState(false);
 
+  // song props from MusicDisplayAll and MusicDisplayGenre
   const song = {
     title: props.songName,
     author: props.author,
     source: props.downloadURL,
     id: props.songID,
+    artist: props.songArtist,
   };
 
   var songId = props.songID;
 
-  // retrieve id of current user
-  // useEffect(() => {
-  //   $(document).ready(function(){
-  //     $("#heart").click(function(){
-  
-  //       if($("#heart").hasClass("liked")){
-  //         $("#heart").html('<i class="far fa-heart" aria-hidden="true"></i>');
-  //         $("#heart").removeClass("liked");
-  //       }else{
-  //         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-  //         $("#heart").addClass("liked");
-  //       }
-  //     });
-  //   });
-  // }, []);
-  const [Account, setCurrentAccount] = useState([]);
-  const [Library, setLibrary] = useState([]);
-  const [LibraryID, setLibraryID] = useState([]);
+  // retrieve account details of the logged in user
   useEffect(() => {
     axios.get(`/api/current_user/data`).then((res) => {
-      console.log(res.data.account._id);
       setCurrentAccountId(res.data.account._id);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get(`/api/current_user/data`).then((res) => {
-      console.log(res.data.account);
-      setCurrentAccount(res.data.account);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get(`/api/current_user/data`).then((res) => {
-      console.log(res.data.account.library);
       setLibrary(res.data.account.library);
+      console.log(res.data.account._id);
+      console.log(res.data.account);
+      console.log(res.data.account.library);
     });
   }, []);
 
-
-  //  lib(){
-  //   Library.map((lib, index) => {
-  
-  //     setLibraryID(prevState => ({
-  //       myArray: [...prevState, lib._id]
-  //     }))
-  //   });
-  //  } 
-
-  // lib
-  
-  // console.log(lib)
-
-  // event handler for adding song to library
-  const libraryHandler = () => {
+  // onClick event handler to add songs to library
+  const AddLibraryHandler = () => {
+    setInLib(true);
 
     axios
       .post(`/api/current_user/save_song/${currentAccountId}`, { song: songId })
@@ -89,9 +49,37 @@ const MusicPlayerHome = (props) => {
       });
   };
 
+  // onClick event handler to delete songs from library
+  const deleteLibraryHandler = () => {
+    setInLib(false);
+
+    axios
+      .post(`/api/current_user/delete_song/${currentAccountId}`, {
+        song: songId,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Check if song is in library when page loads to determine which icon is displayed
+  var onLoadLibraryStatus = Library.map((lib) => {
+    if (lib._id === song.id) {
+      $(`#${song.id}`).remove();
+
+      return (
+        <span key={song.id + 2}onClick={deleteLibraryHandler} id="heart">
+          <i className="fa fa-minus add-delete-btn" />{" "}
+        </span>
+      );
+    }
+  });
+
   // audio handlers
   const player = useRef();
-  const like = useRef();
 
   const songStatusHandler = () => {
     setIsPlaying(!isPlaying);
@@ -113,31 +101,30 @@ const MusicPlayerHome = (props) => {
   ) : (
     <i className="fa fa-play" />
   );
+
+  // let libState= inLib ? (
+  //   <span  onClick={deleteHandler}id="heart"><i class="fas fa-trash-alt testt"/> </span>
+  // ) : (
+  //   <span  onClick={libraryHandler}id="h"><i className="far fa-heart testt" aria-hidden="true" /> </span>
+  // )
+
+
   const playerCore = (
     <div>
+      <span id={song.id} onClick={AddLibraryHandler}>
+        <i className="fas fa-plus add-delete-btn"></i>
+      </span>
       <div className="song-name">
         <div className="song-menu">
-          <button onClick={songStatusHandler} className="btn btn-primary">
+          <button onClick={songStatusHandler} className="audioBut play-pause-but">
             {songState}
           </button>
-          <button onClick={libraryHandler} className="btn-add">
-            <i className="fas fa-plus"></i>
-          </button>
-          <span ref={like} onClick={libraryHandler}id="heart"><i className="far fa-heart" aria-hidden="true" /> </span>
 
-          {/* <button onClick={songStatusHandler}>
-          {songState}
-            
-          </button>
-          <button onClick={songStopHandler} className="btn btn-danger">
-            Stop
-          </button> */}
+          {onLoadLibraryStatus}
         </div>
       </div>
     </div>
   );
-
-
 
   return (
     <div className="player-core">

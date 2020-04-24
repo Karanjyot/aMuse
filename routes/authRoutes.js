@@ -103,7 +103,7 @@ module.exports = (app) => {
     })
       .populate("songs")
       .populate("images")
-      
+      .populate("library")
       .then((account) => {
           res.json({
             msg: "Found users account",
@@ -310,6 +310,22 @@ module.exports = (app) => {
     });
   });
 
+
+  app.post("/api/current_user/delete_song/:id", isAuthenticated, (req, res) => {
+    Account
+    .update( 
+      {_id: req.params.id}, 
+      { $pull: {library: req.body.song } } 
+    )
+    .then( err => {
+      console.log("success")
+    });
+
+  });
+
+
+
+
   // retrieve all songs from library
   app.get("/api/librarysong/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id)
@@ -321,26 +337,4 @@ module.exports = (app) => {
       })
       .catch((err) => console.log(err));
   });
-
-
-//   app.get("/api/current_user/data/library", isAuthenticated, (req, res) => {
-//     const id = req.user._id;
-//     Account.findOne({
-//       userId: id,
-//     })
-//       .populate("songs")
-//       .populate("images")
-//       .populate("libraries")
-//       .then((account) => {
-//         res.json({
-//           msg: "Found users account",
-//           user: req.user,
-//           account,
-//         });
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   });
-
 };
