@@ -21,8 +21,8 @@ const  CommentInput= (props) => {
     axios.post(`/api/comment/${props.song._id}`, com)
         .then(res=> {
           setComment("");
-          console.log(res)})
-        .catch(err=> console.log(err));
+          props.fresh();
+        }).catch(err=> console.log(err));
 }
 
   let profilePic = !props.curUser.profilePicture ? profile: props.curUser.profilePicture;
@@ -30,7 +30,7 @@ const  CommentInput= (props) => {
     <div className="comment-form">
       <img src={profilePic} alt="users profile image shown for comments"  width="6%"/>
         <form onSubmit={uploadCommentHandler} className="d-flex flex-row justify-content-between ">
-            <input  onChange={(e)=> setComment(e.target.value)}
+            <input value={comment} onChange={(e)=> setComment(e.target.value)}
              placeholder="Add a public comment..."/>
             <button className="btn btn-default" type="submit">Comment</button>
         </form>

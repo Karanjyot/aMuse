@@ -15,7 +15,7 @@ const AudioPlayer = ()=>{
     const [authUser, setAuthUser] = useState({});
     //
     const [likeAgain, setLikeAgain] = useState(null);
-
+    const [fresh, setFresh] = useState(false);
     let {id} = useParams();
 
     useEffect(()=> {
@@ -26,7 +26,7 @@ const AudioPlayer = ()=>{
             setAccount(res.data.account[0]);
             console.log(res.data)
         }).catch(err=> {console.log(err)});
-    }, [])
+    }, [fresh])
 
     useEffect(()=> {
         axios(`/api/current_user/data`)
@@ -35,12 +35,17 @@ const AudioPlayer = ()=>{
         setAuthUser(res.data.account);
         }).catch(err=> {console.log(err)});
     }, [])
-
+    const refreshPage = ()=> {
+        setFresh(!fresh);
+    }
     const likeSongHandler = ()=> {
         axios.post(`/api/likesong/${id}`)
         .then(res =>{
             if(res.data.code === 11000){
-                setLikeAgain("Already liked this !")
+                setLikeAgain("Already liked this !");
+            }else {
+                setLikeAgain("Liked !");
+                setFresh(!fresh);
             }
         })
         .catch(err=> {
@@ -69,7 +74,7 @@ const AudioPlayer = ()=>{
                 </h5>
                 <div className="row">
                     <div className="col-12">
-                        <CommentInput  song={song} account={account}  curUser={authUser}/>
+                        <CommentInput fresh={refreshPage} song={song} account={account}  curUser={authUser}/>
                     </div>
                     <div className="col-12 users-comments-display">
                         {/* <Comment />
