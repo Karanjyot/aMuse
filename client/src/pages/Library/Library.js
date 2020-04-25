@@ -12,14 +12,14 @@ const Library = () => {
   
   return (
   
-    <div id="homepage">
+    <div id="librarypage">
       <Header />
       <div className="container">
      
         <LibraryDisplay />
     
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -73,7 +73,7 @@ const LibraryDisplay = (props) => {
 
   return (
     <div className="App jumbotron">
-      <h1 className="genre">Library</h1>
+      <h1 className="genre">My Favourites</h1>
 
       <div className="container">
         <div className="active-pink-3 active-pink-4">
