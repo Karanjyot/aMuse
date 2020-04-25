@@ -50,8 +50,9 @@ const MusicPlayer = (props) => {
     }
   };
 
-  let name = props.song.name;
+  let name = String(props.song.name);
 
+  let cleanName = name.substring(0,name.length - 4);
   return (
     <div className="container ">
       <div className="row mt-4 d-flex flex-row justify-content-between">
@@ -60,7 +61,7 @@ const MusicPlayer = (props) => {
           <div className="glow container">
             <div className="text-container">
               
-              <span className="text">{name}</span>
+              <span className="text">{cleanName}</span>
               <h5 className="player-artist-section">- {props.artist}</h5>
               <br />
               <div className="playback_controls">
