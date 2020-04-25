@@ -318,23 +318,16 @@ module.exports = (app) => {
       { $pull: {library: req.body.song } } 
     )
     .then( err => {
-      console.log("success")
-    });
-
-  });
-
-
-
-
-  // retrieve all songs from library
-  app.get("/api/librarysong/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id)
-      .then((song) => {
-        res.json({
-          msg: "Song found",
-          song,
-        });
+      res.json({
+        msg: "Song has been successfully deleted from library",
+      });
+    })
+    .catch((err)=>{
+      res.json({
+        msg: "Song has not been deleted",
+        error: err
       })
-      .catch((err) => console.log(err));
+    })
   });
+
 };
