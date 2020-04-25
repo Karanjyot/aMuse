@@ -27,6 +27,8 @@ const MusicPlayer = (props) => {
     
     }
   };
+
+ 
   // stop song from playing
   const stop = () => {
     player.current.pause();
@@ -51,6 +53,7 @@ const MusicPlayer = (props) => {
   };
 
   let name = props.song.name;
+  
 
   return (
     <div className="container ">
