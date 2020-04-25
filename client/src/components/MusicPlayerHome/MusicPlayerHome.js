@@ -71,9 +71,9 @@ const MusicPlayerHome = (props) => {
       $(`#${song.id}`).remove();
 
       return (
-        <span key={song.id + 2}onClick={deleteLibraryHandler} id="heart">
-          <i className="fa fa-minus add-delete-btn" />{" "}
-        </span>
+        <a><span key={song.id + 2}onClick={deleteLibraryHandler} id="heart">
+          <i className="fa fa-minus add-delete-btn" />
+        </span></a>
       );
     }
   });
@@ -111,9 +111,9 @@ const MusicPlayerHome = (props) => {
 
   const playerCore = (
     <div>
-      <span id={song.id} onClick={AddLibraryHandler}>
+     <a><span id={song.id} onClick={AddLibraryHandler}>
         <i className="fas fa-plus add-delete-btn"></i>
-      </span>
+      </span></a>
       <div className="song-name">
         <div className="song-menu">
           <button onClick={songStatusHandler} className="audioBut play-pause-but">
