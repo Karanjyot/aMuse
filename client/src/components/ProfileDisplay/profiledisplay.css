@@ -1,7 +1,8 @@
 #profileJumbotron{
 padding-top: 0px;
 padding-bottom: 30px;
-background-color: whitesmoke;
+background: rgb(255,216,189);
+background: linear-gradient(0deg, rgba(255,216,189,1) 0%, rgba(185,185,185,1) 100%);
 color: black;
 border-bottom: 3px double #266DD3;
 }
