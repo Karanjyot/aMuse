@@ -47,46 +47,6 @@ const AccountSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: `Song`,
       },
-    // {
-    //     name: {
-    //         type: String
-    //    },
-    //    downloadURL: {
-    //        type: String,
-    //        required: false,
-    //        unique: true
-    //    },
-    //    albumPhoto: {
-    //        type: String, 
-    //        required: false,
-    //    },
-    //    artist: {
-    //        type:String 
-    //    },
-    //    genre:{
-    //        type: String
-    //    },
-    //    comments: [
-    //        {
-    //            type: mongoose.Schema.Types.ObjectId,
-    //            ref: `Comment`
-    //        }
-    //    ],
-    //    likes: [
-    //        {
-    //            type: mongoose.Schema.Types.ObjectId,
-    //            ref: `Like`
-    //        }
-    //    ],
-    //    authorID:{
-    //        type: mongoose.Schema.Types.ObjectId, 
-    //        ref: 'users'  
-    //    },
-    //    accountID:{
-    //        type:mongoose.Schema.Types.ObjectId,
-    //        ref: "Account"
-    //    }
-    // },
   ],
 });
 
