@@ -8,8 +8,10 @@ import logo from '../../../images/logo.png';
 
 const Footer = (props) => {
   return(
+    <div>
     <div className="d-flex flex-row justify-content-center align-items-center" id="page-footer">
         <img src={logo} height="80%" />
+    </div>
     </div>
    )
 

@@ -1,0 +1,15 @@
+
+  
+  .fa-heart {
+    color: red;
+    cursor: pointer;
+  }
+
+  .add-delete-btn{
+    float: right;
+   margin-top: -50px;
+  }
+
+  .play-pause-but{
+    margin-top: 10px;
+  }

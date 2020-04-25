@@ -46,7 +46,7 @@ opacity: .5;
   }
 
   .jb{
-    height: 450px!important;
+    height: 400px!important;
     overflow: auto;
 }
 
@@ -160,6 +160,7 @@ opacity: .5;
   margin-left: 1rem;
   font-weight: 500;
 }
+
 .manager-profile-controls{
   background: rgb(177, 175, 175, 0.7);
 }
@@ -178,3 +179,18 @@ opacity: .5;
   color: #FF6700;
   font-style: italic;
 }
+
+
+  .song-name{
+    font-family: 'Baloo Tamma 2', cursive;
+    color: black;
+  }
+
+  .artist-name{
+    margin-top:-10px
+  }
+
+  .App{
+    margin-top: 20px;
+  }
+

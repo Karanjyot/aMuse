@@ -44,37 +44,14 @@ const AccountSchema = new mongoose.Schema({
 
   library: [
     {
-      name: {
-        type: String,
-      },
-      downloadURL: {
-        type: String,
-        required: false,
-      },
-      albumPhoto: {
-        type: String,
-        required: false,
-      },
-      comments: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: `Comment`,
-        },
-      ],
-      likes: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: `Like`,
-        },
-      ],
-      authorID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        ref: `Song`,
       },
-    },
   ],
 });
 
 const Account = mongoose.model("Account", AccountSchema);
 
 module.exports = Account;
+
+

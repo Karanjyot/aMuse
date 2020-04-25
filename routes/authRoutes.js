@@ -103,6 +103,7 @@ module.exports = (app) => {
     })
       .populate("songs")
       .populate("images")
+      .populate("library")
       .then((account) => {
           res.json({
             msg: "Found users account",
@@ -309,16 +310,24 @@ module.exports = (app) => {
     });
   });
 
-  // retrieve all songs from library
-  app.get("/api/librarysong/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id)
-      .then((song) => {
-        res.json({
-          msg: "Song found",
-          song,
-        });
+
+  app.post("/api/current_user/delete_song/:id", isAuthenticated, (req, res) => {
+    Account
+    .update( 
+      {_id: req.params.id}, 
+      { $pull: {library: req.body.song } } 
+    )
+    .then( err => {
+      res.json({
+        msg: "Song has been successfully deleted from library",
+      });
+    })
+    .catch((err)=>{
+      res.json({
+        msg: "Song has not been deleted",
+        error: err
       })
-      .catch((err) => console.log(err));
+    })
   });
 
 
@@ -354,6 +363,7 @@ app.delete('/api/remove-image/:id', isAuthenticated, (req, res)=> {
     });
   });
 })
+
 
 
 

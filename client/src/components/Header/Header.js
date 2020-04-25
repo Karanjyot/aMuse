@@ -53,11 +53,11 @@ const Header = (props) => {
             </div>
 
             <ul className="navbar-nav ml-auto nav-flex-icons">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="/upload">
                   Upload
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
