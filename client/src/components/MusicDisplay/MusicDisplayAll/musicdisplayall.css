@@ -70,30 +70,35 @@ opacity: .5;
 #music-display-view{
   width: 100%;
   min-height: 20rem;
-  border-top: linen;
+  border-top: 3px double #ff6700;
+  border-bottom: 3px double #266DD3;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content:center;
   margin-left:2px;
-  color: rgb(97, 97, 97)
+  color: rgb(65, 65, 65);
+  background: rgb(255,216,189);
+  background: linear-gradient(0deg, rgba(255,216,189,1) 0%, rgba(185,185,185,1) 100%);
 }
 .tunes-by-user{
   width: 100%;
   padding: 0.4rem;
-  background-color: white;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 4px grey;
   border-left: 4px solid #ff6700;
-  border-top: 2px dotted #266DD3;
-  border-bottom: 2px dotted #266DD3;
+  border-top: 4px solid #3DA5D9;
+  /* border-top: 2px dotted #266DD3;
+  border-bottom: 2px dotted #266DD3; */
   color:#0D3B66;
   font-size: 13px;
+  margin-top: 0.5rem;
 
   font-family:'Press Start 2P', cursive;
 }
 #photos {
   /* Prevent vertical gaps */
   line-height: 0;
-  background: lavender;
    padding: 1rem;
   -webkit-column-count: 2;
   -webkit-column-gap:   3px;
@@ -110,7 +115,7 @@ opacity: .5;
   height: auto !important;
   box-shadow: 1px 1px 2px darkgray;
   padding: 2px;
-  background: white;
+  background: whitesmoke;
 }
 @media (max-width: 1200px) {
   #photos {
@@ -154,4 +159,22 @@ opacity: .5;
   letter-spacing: 2px;
   margin-left: 1rem;
   font-weight: 500;
+}
+.manager-profile-controls{
+  background: rgb(177, 175, 175, 0.7);
+}
+.manager-profile-controls button{
+  color:#266DD3;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.profile-song-comments{
+  color: #266DD3;
+  font-style: italic;
+}
+.profile-song-like{
+  color: #FF6700;
+  font-style: italic;
 }

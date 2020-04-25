@@ -54,6 +54,7 @@ const Profile = () =>{
     };
     const closeMenuHandler = () => {
       setShowMenu(false);
+      
     };
     const formUpdateToggle = ()=> {
       setIsUpdating(!isUpdating);
@@ -128,8 +129,9 @@ const Profile = () =>{
     let updateInfoStyle = isUpdating ? 'general-info-active': 'general-info';
 return (
     <div id="profilePage">
+       <Header />
     <div className="container" >
-        <Header />
+       
         <ProfileDisplay userEmail={userEmail} userAccount= {account} showForm={formUpdateToggle} uploadMenu = {toggleMenuHandler} update={updateControlHandler}/>
         {/* THE DIV BELOW REQUIRES CONDITIONAL RENDERING */}
         <div className={updateInfoStyle}>
@@ -139,7 +141,7 @@ return (
           </span>
           <div className="row profile-forms-row">
             <div className="col-md-6  d-flex flex-column justify-content-start align-items-center">
-              <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-secondary">Select Profile Picture</button>
+              <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-outline-default">Select Profile Picture</button>
               <div className={selectProfileSectionStyle}>
                 {selectProfile}
                 
@@ -152,14 +154,14 @@ return (
                 <input value={desc} onChange={(e)=>setDesc(e.target.value)} type="text"  placeholder="Describe yourself" />
                 <input value={country} onChange={(e)=>setCountry(e.target.value)} type="text"  placeholder="Your country"/>
                 <input value={city} onChange={(e)=>setCity(e.target.value)} type="text"  placeholder="Your city"/>
-                <button className="btn btn-primary btn-sm">Update Info</button>
+                <button className="btn btn-light mt-2">Update Info</button>
               </form>
             </div>
           </div>
         </div>
         <MusicDisplayView userAccount={account} viewType="profile"/>
         {backdrop}
-        <UploadMenu displayForm={isUpdating} acc={account} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
+        <UploadMenu  displayForm={isUpdating} acc={account} show={showMenu} accId={id} accountImages = {imgs} update={updateControlHandler} closeMenu={closeMenuHandler}/>     
      
     </div>
     <Footer />

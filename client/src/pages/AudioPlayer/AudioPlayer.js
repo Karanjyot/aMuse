@@ -47,10 +47,11 @@ const AudioPlayer = ()=>{
             console.log(err);
         });
     }
-
+    //Controlling the total number of comments and likes as well as for duplicates when an item is liked
     const commmentsNum = song.comments ? song.comments.length : 0;
     const likeNum = song.likes ? song.likes.length : 0;
     const likeDuplicate = likeAgain;
+    //Setting up the comments display
     let comments = <h2>No added comments</h2>
     if(song.comments && song.comments.length > 0){
         comments = song.comments.map(com=> {

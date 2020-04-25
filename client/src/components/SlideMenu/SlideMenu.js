@@ -26,16 +26,19 @@ const SlideMenu = (props) => {
   const [photoSrc, setPhotoSrc] = useState(null);
   const [imgURL, setImgURL] = useState("");
   const [theProgress, setTheProgress] =useState(0);
-  //Account info
 
-  //Dom control 
+  //Dom control
+  const [hasUploadedS, setHasUploadedS] = useState(false);
+  const [hasUploadedP, setHasUploadedP] = useState(false) 
 
   
+
   //Manages Change of the input field in the form for MP3 files
   const handleChange = (e)=> {
     if(e.target.files[0]){
       const file = e.target.files[0];
       setSrc(file);
+      setHasUploadedS(false);
     }
   }
   //Manages Change of the input field of the form for Album cover
@@ -43,6 +46,7 @@ const SlideMenu = (props) => {
     if(e.target.files[0]){
       const file = e.target.files[0];
       setPhotoSrc(file);
+      setHasUploadedP(false);
     }
   }
 
@@ -55,6 +59,8 @@ const SlideMenu = (props) => {
       .then(res=> {
         console.log(res);
         setIsLoading(false);
+        setHasUploadedP(true);
+       
       }).catch(err=> {
         console.log(err);
         setIsLoading(false);
@@ -63,6 +69,7 @@ const SlideMenu = (props) => {
   const uploadFileHandler = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setHasUploadedP(false);
     const photo = photoSrc;
     const photoName = photo.name.toString();
     const photoMeta = photo.type.toString();
@@ -106,6 +113,7 @@ const SlideMenu = (props) => {
     axios.post(`/api/current_user/upload_song/${props.accId}`, songObject)
       .then(res=> {
         setIsSongUploading(false);
+        setHasUploadedS(true);
       })
       .catch(err=>{
         setIsSongUploading(false);
@@ -113,7 +121,8 @@ const SlideMenu = (props) => {
   }
   const uploadMP3Handler = (e)=> {
     e.preventDefault();
-    setIsSongUploading(true)
+    setIsSongUploading(true);
+    
     const song = src;
     const nameofSong = song.name.toString();
     const metadata = {
@@ -213,13 +222,13 @@ const SlideMenu = (props) => {
       </div>
       <div className="song-upload">
        <div className="song-upload-title">
-          Album Uploads
+          Album Uploads 
        </div>
        <div className="upload-song-form">
           <img className="mt-4"  src={photo} width="auto" height="50" />
           <form onSubmit={uploadFileHandler}>  
             <div className="form-group">
-              <label>Upload New Image</label>
+              <label>Upload New Image<span className="upload-state-text">{hasUploadedP ? "Complete !": null}</span> </label>
               <input onChange={handleImgChange} type="file" className="form-control-file" />
             </div>
             <button type="submit" className="btn btn-primary btn-sm">Upload</button>
@@ -230,7 +239,7 @@ const SlideMenu = (props) => {
           <img  className="mt-4" src={note} height="50" width="auto" />
           <form onSubmit={uploadMP3Handler}>  
             <div className="form-group">
-              <label>Upload New Song</label>
+              <label>Upload New Song<span className="upload-state-text">{hasUploadedS ? "Complete !": null}</span></label>
               <input onChange={handleChange} type="file" className="form-control-file" />
             </div>
             <button type="submit" className="btn btn-info btn-sm">Upload</button>

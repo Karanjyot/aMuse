@@ -320,4 +320,51 @@ module.exports = (app) => {
       })
       .catch((err) => console.log(err));
   });
+
+
+
+
+//DELETION ROUTES 
+app.delete('/api/remove-song/:id', isAuthenticated, (req, res)=> {
+  Song.findByIdAndDelete(req.params.id)
+    .then(remSong => {
+        res.json({
+          message: "Song deleted successfully",
+          song: remSong
+        })
+    }).catch(err => {
+      res.json({
+        msg: err.message,
+        code: err.code
+      });
+    });
+})
+
+app.delete('/api/remove-image/:id', isAuthenticated, (req, res)=> {
+  Image.findByIdAndDelete(req.params.id)
+  .then(remImage => {
+    Account.findOneAndUpdate({
+      userId: remImage.authorID
+    },{profilePicture: ""}).then(update=> res.json(update))
+    .catch(err=> res.json(err));
+}).catch(err => {
+    res.json({
+      msg: err.message,
+      code: err.code
+    });
+  });
+})
+
+
+
+
+
+
+
+
+
 };
+
+
+
+

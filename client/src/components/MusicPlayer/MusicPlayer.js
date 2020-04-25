@@ -1,23 +1,18 @@
 import React, { useState, useRef } from "react";
 import "./musicplayer.css";
-
-
-import axios from "axios"
-
-
-import drake from '../../images/drake.jpg';
+import profile from '../../images/music.png';
 /**
  * @author
  * @function MusicPlayer
  **/
 
 const MusicPlayer = (props) => {
+  const player = useRef();
+
 
   const [isPlaying, setisPlaying] = useState(false);
-  const [url, setURL] = useState("");
 
 
-  const player = useRef();
 
 
   // Function to control state if song is playing or paused
@@ -32,10 +27,10 @@ const MusicPlayer = (props) => {
     
     }
   };
-
   // stop song from playing
   const stop = () => {
     player.current.pause();
+    player.current.currentTime = 0;
   };
 
   //Update play/pause button based off of state
@@ -64,7 +59,9 @@ const MusicPlayer = (props) => {
           <audio ref={player} src={props.song.downloadURL} />
           <div className="glow container">
             <div className="text-container">
+              
               <span className="text">{name}</span>
+              <h5 className="player-artist-section">- {props.artist}</h5>
               <br />
               <div className="playback_controls">
                 <button className="audioBut" >
@@ -78,18 +75,18 @@ const MusicPlayer = (props) => {
                   <i className="fa fa-fast-forward" />
                 </button>
               </div>
-              <br />
+              {/* <br />
               <div id="seekbar">
-                <input type="range" id="seek" defaultValue={0} />
+                <input type="range" id="seek" defaultValue={0}/>
               </div>
-              <br />
+              <br /> */}
           </div>
         </div>
              
        </div>
        <div className="col-md-5 d-flex flex-column align-items-center justify-content-around music-player-main">
-        <h2>{props.artist}</h2>
-        <img src={props.song.albumPhoto} width="90%" fluid/>
+        <h2>Album by {props.artist}</h2>
+        <img id="albumphoto" src={props.song.albumPhoto ? props.song.albumPhoto : profile} width="50%" />
        </div>
       </div>
     </div>
@@ -98,41 +95,3 @@ const MusicPlayer = (props) => {
 
 export default MusicPlayer;
 
-          {/* <div className="volume_controls">
-            <button className="audioBut" id="mute" onClick="mute()">
-              <i className="fa fa-volume-up" />
-            </button>
-            <input
-              type="range"
-              id="volume"
-              oninput="setVolume(this.value)"
-              min={0}
-              max={1}
-              step="0.01"
-              defaultValue={1}
-            />
-          </div> */}
-
-      {/* playlist
-      <div className="play-list">
-        <div className="container  ">
-          <div className="row ">
-            <div className="col-12 col-sm-8 col-lg-5">
-              <h6 className="text-muted">Album/Playlist Name</h6>
-              <ul className="list-group">
-                <li className="list-group-item d-flex align-items-center">
-                  <div className="image-parent">
-                    <img
-                      src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/things_fall_apart.jpg"
-                      className="img-fluid"
-                      alt="things"
-                    />
-                  </div>
-                  1. Song Name{" "}
-                  <div className="play-listitem">{renderPlay()}</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> */}

@@ -25,14 +25,14 @@ const  CommentInput= (props) => {
         .catch(err=> console.log(err));
 }
 
-  let profilePic = !props.curUser.profilePicture?profile: props.curUser.profilePicture;
+  let profilePic = !props.curUser.profilePicture ? profile: props.curUser.profilePicture;
   return(
     <div className="comment-form">
       <img src={profilePic} alt="users profile image shown for comments"  width="6%"/>
         <form onSubmit={uploadCommentHandler} className="d-flex flex-row justify-content-between ">
             <input  onChange={(e)=> setComment(e.target.value)}
              placeholder="Add a public comment..."/>
-            <button className="btn btn-dark" type="submit">Comment</button>
+            <button className="btn btn-default" type="submit">Comment</button>
         </form>
     </div>
   
