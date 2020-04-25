@@ -27,6 +27,8 @@ const MusicPlayer = (props) => {
     
     }
   };
+
+ 
   // stop song from playing
   const stop = () => {
     player.current.pause();
