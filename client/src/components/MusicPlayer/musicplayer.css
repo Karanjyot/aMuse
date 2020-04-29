@@ -33,6 +33,17 @@
 	max-height: 10rem;
 	object-fit: contain;
 }
+#artist-name-audio{
+	color:whitesmoke;
+	font-weight: 300;
+	margin-left: 1rem;
+	letter-spacing: 1.5px;
+	box-shadow: 1px 1px 2px 2px whitesmoke;
+	padding: 5px;
+	background: linear-gradient(0deg, rgba(0,0,0,1) 68%, rgb(217, 118, 61) 74%, rgb(217, 155, 61) 78%, rgba(0,0,0,1) 95%);
+	font-family: 'Rubik', sans-serif;
+
+}
 .player-artist-section{
 	color: silver;
 	font-family: 'Press Start 2P', cursive;
@@ -40,8 +51,7 @@
 }
 	.music-player-main{
 		background: rgb(24, 23, 20);
-		border-top: 4px solid white;
-		border-left: 4px solid white;
+		box-shadow: 1px 1px 10px 10px silver;
 		color: silver;
 	}
     .glow {

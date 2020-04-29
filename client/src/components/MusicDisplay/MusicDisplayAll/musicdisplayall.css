@@ -1,7 +1,11 @@
 .genre{
-   text-align: center;
- 
-   font-weight: 400;
+  width: 100%;
+  font-size: 2.5rem;
+  color:rgb(82, 82, 82);
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px dotted rgb(82, 82, 82);
+  
 }
 
 .page-padding{
@@ -48,6 +52,8 @@ opacity: .5;
   .jb{
     height: 400px!important;
     overflow: auto;
+    border-top: 5px solid #266DD3;
+    
 }
 
 .jb::-webkit-scrollbar { width: 0 !important }
@@ -192,5 +198,15 @@ opacity: .5;
 
   .App{
     margin-top: 20px;
+    background: rgb(255,216,189);
+    background: linear-gradient(0deg, rgba(255,216,189,1) 0%, rgba(185,185,185,1) 100%);
+  }
+  .list-section-home{
+    /* background-color: rgba(185,185,185, 0.8); */
+    padding: 10px;
+    background: rgb(255,216,189);
+    background: linear-gradient(0deg, rgba(255,216,189,0.5) 0%, rgba(185,185,185,0.5) 100%);
+    /* border-bottom: 3px double #266DD3; */
+  
   }
 

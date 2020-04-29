@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const LikeSchema = new mongoose.Schema({
     liked: {
-        type: String,
-        unique: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
     }
 
 });

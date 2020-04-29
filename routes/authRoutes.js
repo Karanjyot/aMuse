@@ -225,7 +225,7 @@ module.exports = (app) => {
   });
   //Retrieve a song and its associated account. Now can be done through populating
   app.get("/api/song/:id", isAuthenticated, (req, res) => {
-    Song.findById(req.params.id).populate('comments').populate("accountID")
+    Song.findById(req.params.id).populate('comments').populate("accountID").populate("likes")
       .then((song) => {
         Account.find({
           userId: song.authorID,
@@ -238,7 +238,7 @@ module.exports = (app) => {
           });
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => res.json(err));
   });
 
   // Adding a comment
@@ -271,21 +271,18 @@ module.exports = (app) => {
   // Adding a like
   app.post("/api/likesong/:id", isAuthenticated, (req, res) => {
     Song.findById(req.params.id)
-      .populate("likes")
       .then((sng) => {
-        Like.create({
-          liked: req.user._id,
-        })
-          .then((like) => {
-            sng.likes.push(like);
-            sng.save();
-            res.json({
-              msg: "You liked the song",
-            });
-          })
-          .catch((err) => res.json(err));
-      })
-      .catch((err) => [res.json(err)]);
+        User.findById(req.user._id)
+          .then(like=> {
+              sng.likes.push(like);
+              sng.save();
+              res.json({
+                msg: "unique",
+                song: sng
+              })
+          }).catch(err=> res.json(err))
+       
+      }).catch((err) => res.json(err));
   });
 
   //Save song to library
