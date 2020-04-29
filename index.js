@@ -5,7 +5,7 @@ const passport = require ("passport");
 const keys = require("./config/keys");
 const cors = require("cors");
 const path = require('path');
-
+require('dotenv').config()
 require("./models/User");
 require("./services/passport");
 const authRoutes = require("./routes/authRoutes")
