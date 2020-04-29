@@ -18,10 +18,14 @@ const Signup = (props) => {
     };
     axios
       .post("/api/local/signin", obj)
-      .then((res) => {
-        history.push("/home");
-      })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          if(res.data.msg === "Account exists!"){
+            history.push("/login");
+          }else {
+            history.push("/home");
+          }
+          
+        }).catch((err) => console.log(err));
   };
 
   return (

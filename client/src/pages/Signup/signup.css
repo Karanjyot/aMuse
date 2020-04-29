@@ -17,6 +17,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-y: auto;
 }
     .form-control {
 		font-size: 16px;

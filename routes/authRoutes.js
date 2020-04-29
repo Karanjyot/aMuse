@@ -5,7 +5,7 @@ const Account = require("../models/Account");
 const Song = require("../models/Song");
 const Image = require("../models/Image");
 const Comment = require("../models/Comment");
-const Like = require("../models/Like");
+
 module.exports = (app) => {
   //*****************************************AUTHENTICATION ROUTES******************************************************************
   //Google Authentication
@@ -35,36 +35,49 @@ module.exports = (app) => {
       email: req.body.email,
       password: req.body.password,
     };
-    User.create(userNew)
-      .then((usr) => {
-        const account = {
-          artist_nickname: "",
-          genre: "",
-          description: "",
-          country: "",
-          city: "",
-          userId: usr._id,
-        };
-        Account.create(account).then((acc) => {
-          passport.authenticate("local")(req, res, () => {
-            res.json({
-              msg: "Sign-in Successful",
-              account: acc,
+    User.find({email: userNew.email})
+      .then(found=> {
+        console.log(found);
+        if(found.length < 1){
+          User.create(userNew)
+          .then((usr) => {
+            const account = {
+              artist_nickname: "",
+              genre: "",
+              description: "",
+              country: "",
+              city: "",
+              userId: usr._id,
+            };
+            Account.create(account).then((acc) => {
+              passport.authenticate("local")(req, res, () => {
+                res.json({
+                  msg: "Sign-in Successful",
+                  account: acc,
+                });
+              });
             });
-          });
-        });
-      })
-      .catch((err) => {
+          })
+        }else {
+          res.json({
+            msg: "Account exists!",
+            account: found
+          })
+        }
+      }).catch((err) => {
         res.json({
           msg: err.message,
           error: err,
         });
       });
+
   });
   app.post("/api/local/login", passport.authenticate("local"), (req, res) => {
-    res.json({
-      msg: "Login Successful, Congrats asshole, FINALLY",
-    });
+      res.json({
+        msg: "Login Successful",
+      });
+ 
+
   });
 
   //logout is automatically attached to the req object by passport. It takes the cookie that contains user id and removes the id.
