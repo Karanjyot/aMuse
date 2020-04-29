@@ -10,3 +10,7 @@ Create a Footer component
 - This component will create a smooth ending for our pages
 
 - Home route uses an identical useEffect call in its component, whats the point
+
+    // "server": "nodemon index.js --ignore './client/'",
+    // "client": "npm run start --prefix client",
+    // "dev": "concurrently \"npm run server\" \"npm run client\""
