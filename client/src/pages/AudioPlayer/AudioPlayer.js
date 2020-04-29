@@ -13,6 +13,7 @@ const AudioPlayer = ()=>{
     const [account, setAccount] = useState({})
     const [author, setAuthor] =useState("")
     const [authUser, setAuthUser] = useState({});
+    const [loggedIn, setLoggedIn] = useState("")
     //
     const [likeAgain, setLikeAgain] = useState(null);
     const [fresh, setFresh] = useState(false);
@@ -24,6 +25,7 @@ const AudioPlayer = ()=>{
             setSong(res.data.song)
             setAuthor(res.data.account[0].artist_nickname)
             setAccount(res.data.account[0]);
+            setLoggedIn(res.data.currentUser._id);
             console.log(res.data)
         }).catch(err=> {console.log(err)});
     }, [fresh])
@@ -39,19 +41,28 @@ const AudioPlayer = ()=>{
         setFresh(!fresh);
     }
     const likeSongHandler = ()=> {
-        axios.post(`/api/likesong/${id}`)
-        .then(res =>{
-            if(res.data.code === 11000){
-                setLikeAgain("Already liked this !");
-            }else {
+        let contToAPI = true;
+        song.likes.forEach(user=> {
+            if(loggedIn === user._id){
+                contToAPI = false;
+                return;
+            }
+        });
+        if(contToAPI){
+            axios.post(`/api/likesong/${id}`)
+            .then(res =>{
+                console.log(res);
                 setLikeAgain("Liked !");
                 setFresh(!fresh);
-            }
-        })
-        .catch(err=> {
-            console.log(err);
-        });
+            })
+            .catch(err=> {
+                console.log(err);
+            });
+        }else {
+            setLikeAgain("Already liked this !");
+        }
     }
+
     //Controlling the total number of comments and likes as well as for duplicates when an item is liked
     const commmentsNum = song.comments ? song.comments.length : 0;
     const likeNum = song.likes ? song.likes.length : 0;

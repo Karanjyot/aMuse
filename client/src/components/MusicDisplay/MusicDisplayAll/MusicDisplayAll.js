@@ -85,9 +85,9 @@ const MusicDisplayAll = (props) => {
 
   return (
     <div className="App jumbotron">
-      <h1 className="genre">Explore</h1>
+      <h1 className="genre">Explore Music</h1>
 
-      <div className="container">
+      <div className="container list-section-home">
         <div className="active-pink-3 active-pink-4">
           <input
             className="form-control"

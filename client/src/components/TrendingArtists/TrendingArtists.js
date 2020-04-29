@@ -9,7 +9,7 @@ import user from '../../images/profile.jpg';
 const TrendingArtist = (props) => {
 
 const trendingArtists = props.accounts.map((acc,i)=> {
-  if(acc.userId !== props.currentUser._id && i < 3){
+  if(acc.userId !== props.currentUser._id && i < 4){
     const genre = acc.genre.split(",");
     const description = acc.description.length < 150 ? acc.description:`${acc.description.substring(0, 150)}...` 
     return(

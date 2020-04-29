@@ -24,11 +24,12 @@ const SongSchema = new mongoose.Schema({
             ref: `Comment`
         }
     ],
-    likes: [
-        {
+    likes: [                
+            {
             type: mongoose.Schema.Types.ObjectId,
-            ref: `Like`
-        }
+            ref: `users`,
+            }
+       
     ],
     authorID:{
         type: mongoose.Schema.Types.ObjectId, 

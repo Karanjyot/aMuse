@@ -141,7 +141,7 @@ return (
           </span>
           <div className="row profile-forms-row">
             <div className="col-md-6  d-flex flex-column justify-content-start align-items-center">
-              <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-outline-default">Select Profile Picture</button>
+              <button onClick={()=> setUpdateProfile(!updateProfile)} className="btn btn-outline-info">Select Profile Picture</button>
               <div className={selectProfileSectionStyle}>
                 {selectProfile}
                 

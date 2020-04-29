@@ -24,6 +24,7 @@ const MusicPlayer = (props) => {
     } else {
       setisPlaying(false);
       player.current.pause();
+     
     
     }
   };
@@ -33,6 +34,8 @@ const MusicPlayer = (props) => {
   const stop = () => {
     player.current.pause();
     player.current.currentTime = 0;
+    setisPlaying(false);
+    renderPlay();
   };
 
   //Update play/pause button based off of state
@@ -88,7 +91,7 @@ const MusicPlayer = (props) => {
              
        </div>
        <div className="col-md-5 d-flex flex-column align-items-center justify-content-around music-player-main">
-        <h2>Album by {props.artist}</h2>
+        <h2>Album by <span id="artist-name-audio">{props.artist}</span> </h2>
         <img id="albumphoto" src={props.song.albumPhoto ? props.song.albumPhoto : profile} width="50%" />
        </div>
       </div>
